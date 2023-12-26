@@ -1,0 +1,112 @@
+export const colors = {
+    primary: "#000000",
+    gray: "#858585",
+    white: "#f8f9fb",
+    black: "#000000",
+    lightGrey: "#ddd",
+    white20: 'rgba(255,255,255,.25)',
+
+    gradiant1: ['rgba(245,245,245,0)', 'rgba(245,245,245,0.9)', 'rgba(245,245,245,1)'],
+    gradiant2: ['rgba(245,245,245,1)', 'rgba(245,245,245,0.7)', 'rgba(245,245,245,0)'],
+    gradiant3: ['rgba(245,245,245,0)', 'rgba(245,245,245,0.85)', 'rgba(245,245,245,1)'],
+
+
+    appColor1: '#000000',
+    appColor2: '#838383',
+    appColor3: '#EFEFEF',
+    appColor4: 'rgba(36, 29, 106, 0.5)',
+    appColorFaded: 'rgba(255,255,255,.5)',
+    transparent: 'rgba(255,255,255,.0)',
+
+    // TEXTS
+    appTextColor1: '#ffffff',
+    appTextColor2: '#1C3C88',
+    appTextColor3: '#898888',
+    appTextColor4: '#000000',
+    appTextColor5: '#B3B3B3',
+    appTextColor6: '#F45A45',
+    appTextColor7: '#F9F9F9',
+    appTextColor8: '#1F8235',
+    appTextColor9: '#292D32',
+    appTextColor10: '#367FFA',
+    appTextColor11: '#EBEBEB',
+    appTextColor12: '#000000',
+    appTextColor13: '#FFBE41',
+    appTextColor14: '#606060',
+    appTextColor15: '#348634',
+
+
+    // BACKGROUND
+    appBgColorMain: '#FDFFF9',
+    appBgColor1: '#ffffff',
+    appBgColor2: '#1C3C88',
+    appBgColor3: '#898888',
+    appBgColor4: '#000000',
+    appBgColor5: '#B3B3B3',
+    appBgColor6: '#F45A45',
+    appBgColor7: '#F9F9F9',
+    appBgColor8: '#1F8235',
+    appBgColor9: '#292D32',
+    appBgColor10: '#367FFA',
+    appBgColor11: '#EBEBEB',
+    appBgColor12: '#000000',
+    appBgColor13: '#FFBE41',
+    appBgColor14: '#606060',
+    appBgColor15: '#348634',
+
+
+    // BUTTONS
+    appButton1: '#ffffff',
+    appButton2: '#1C3C88',
+    appButton3: '#898888',
+    appButton4: '#000000',
+    appButton5: '#B3B3B3',
+    appButton6: '#F45A45',
+    appButton7: '#F9F9F9',
+    appButton8: '#1F8235',
+    appButton9: '#292D32',
+    appButton10: '#367FFA',
+    appButton11: '#EBEBEB',
+    appButton12: '#000000',
+    appButton13: '#FFBE41',
+    appButton14: '#606060',
+    appButton15: '#348634',
+
+
+    // BORDERS
+    appBorderColor1: '#ffffff',
+    appBorderColor2: '#1C3C88',
+    appBorderColor3: '#898888',
+    appBorderColor4: '#000000',
+    appBorderColor5: '#B3B3B3',
+    appBorderColor6: '#F45A45',
+    appBorderColor7: '#F9F9F9',
+    appBorderColor8: '#1F8235',
+    appBorderColor9: '#292D32',
+    appBorderColor10: '#367FFA',
+    appBorderColor11: '#EBEBEB',
+    appBorderColor12: '#000000',
+    appBorderColor13: '#FFBE41',
+    appBorderColor14: '#606060',
+    appBorderColor15: '#348634',
+
+
+    // ICONS
+    appIconColor1: '#ffffff',
+    appIconColor2: '#1C3C88',
+    appIconColor3: '#898888',
+    appIconColor4: '#000000',
+    appIconColor5: '#B3B3B3',
+    appIconColor6: '#F45A45',
+    appIconColor7: '#F9F9F9',
+    appIconColor8: '#1F8235',
+    appIconColor9: '#292D32',
+    appIconColor10: '#367FFA',
+    appIconColor11: '#EBEBEB',
+    appIconColor12: '#000000',
+    appIconColor13: '#FFBE41',
+    appIconColor14: '#606060',
+    appIconColor15: '#348634',
+
+
+}
