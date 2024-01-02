@@ -2,8 +2,10 @@ import { ComponentWrapper, Hrline, LargeText, MainHeader, MainWrapper, Spacer } 
 import { DeliveryManagementList } from '../../../components/listComponents'
 import { totalSize } from 'react-native-dimension';
 import { colors } from '../../../constants';
+import useDeliveryManagement from './hook';
 
-const DeliveryManagement = () => {
+const DeliveryManagement = ({ navigation }) => {
+    const { onPressDeliverySheet } = useDeliveryManagement(navigation)
     return (
         <MainWrapper>
             <MainHeader title={'Delivery \nManagement'} goBack />
@@ -13,7 +15,7 @@ const DeliveryManagement = () => {
                 <LargeText style={{ fontSize: totalSize(1.75), color: colors.appTextColor4 }}>Project completed, ready for delivery</LargeText>
             </ComponentWrapper>
             <Spacer />
-            <DeliveryManagementList />
+            <DeliveryManagementList onPressDeliverySheet={onPressDeliverySheet} />
         </MainWrapper>
     )
 }

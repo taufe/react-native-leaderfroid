@@ -1,5 +1,5 @@
 
-import { StatusBar, StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState, useCallback, useEffect } from "react";
 import {
     Bubble,
@@ -9,11 +9,15 @@ import {
 } from "react-native-gifted-chat";
 import { height, width, totalSize } from "react-native-dimension";
 import { Icon } from "react-native-elements";
-import { colors, sizes } from "../../../constants";
-import { MainWrapper, RegularText, RowWrapper, Wrapper } from "../../../components";
+import { colors } from "../../../constants";
+import { Hrline, LargeText, MainWrapper, PrimaryImage, RowWrapper, Spacer, Wrapper } from "../../../components";
+import useConversation from "./hook";
 
-const Conversation = ({ navigation }) => {
+const Conversation = ({ navigation, route }) => {
     const [messages, setMessages] = useState([]);
+
+    const { } = useConversation(navigation)
+    const groupData = route?.params?.item
 
     useEffect(() => {
         setMessages([
@@ -36,37 +40,40 @@ const Conversation = ({ navigation }) => {
     }, []);
     const customtInputToolbar = (props) => {
         return (
-            <RowWrapper>
-                <Wrapper style={{
-                    // borderWidth: 1,
-                    // borderTopWidth: 1,
-                    borderRadius: totalSize(.8),
-                    marginBottom: height(4),
-                    paddingVertical: height(1.7),
-                    backgroundColor: colors.appBgColor1,
-                    paddingHorizontal: width(2)
-                }}>
-                    <Icon style={{}} name="attachment" type="entypo" />
-                </Wrapper>
-                <InputToolbar
-                    {...props}
-                    containerStyle={{
-                        marginVertical: -height(1),
-                        backgroundColor: colors.appBgColor1,
-                        borderTopColor: colors.appBorderColor1,
-                        borderColor: colors.appBorderColor1,
-                        borderWidth: 1,
-                        borderTopWidth: 1,
+            <>
+                <Hrline style={{ position: 'absolute', width: width(90), bottom: height(11) }} />
+                <RowWrapper style={{ position: 'absolute', width: width(90), bottom: -10 }}>
+                    <Wrapper style={{
                         borderRadius: totalSize(.8),
-                        marginLeft: width(13),
                         marginBottom: height(4),
-                    }}
-                />
-            </RowWrapper>
+                        paddingVertical: height(1.7),
+                        backgroundColor: colors.appBgColor1,
+                        paddingHorizontal: width(3),
+
+                    }}>
+                        <Icon style={{}} name="attachment" type="entypo" />
+                    </Wrapper>
+                    <InputToolbar
+                        {...props}
+                        containerStyle={{
+                            marginVertical: -height(1),
+                            backgroundColor: colors.appBgColor1,
+                            borderTopColor: colors.appBorderColor1,
+                            borderColor: colors.appBorderColor1,
+                            borderWidth: 1,
+                            borderTopWidth: 1,
+                            borderRadius: totalSize(.8),
+                            marginLeft: width(15),
+                            marginBottom: height(4),
+                        }}
+                    />
+                </RowWrapper >
+            </>
         );
     };
     const renderChatFooter = () => {
         return (
+
             <Wrapper style={styles.chatFooterContainer}>
                 <Wrapper style={styles.chatFooterInnerContainer}>
                     <Wrapper style={styles.imageWrapper}></Wrapper>
@@ -119,17 +126,34 @@ const Conversation = ({ navigation }) => {
             }}
         />
     );
+
+
+
+    const profileImages = groupData?.profileImages;
+
     return (
         <MainWrapper>
-            <StatusBar
-                backgroundColor={colors.appBgColor1}
-                barStyle={"light-content"}
-            />
-            {/* <ChatInboxHeader
-                name={"Adnan Akhtar"}
-                image={AppImages.post}
-                onPressBack={() => navigation.goBack()}
-            /> */}
+            <Spacer isDoubleBase />
+            <RowWrapper style={{ alignItems: 'center', }}>
+                <TouchableOpacity style={styles.iconWrapper} onPress={() => navigation.goBack()} >
+                    <Icon style={styles.icon} name='arrowleft' type='antdesign' size={22} color={colors.appIconColor2} />
+                </TouchableOpacity>
+                <Wrapper style={{ flexDirection: 'row', }}>
+                    {profileImages ? profileImages?.map((element, index) =>
+                        <PrimaryImage source={element?.image} size={totalSize(4)} styles={{ marginRight: -5 }}
+                            borderRadius={totalSize(5)} />) : <PrimaryImage size={totalSize(4)} source={groupData?.profile} />}
+                </Wrapper>
+                <Wrapper>
+                    <LargeText style={styles.groups}>{groupData?.groups ? groupData?.groups : groupData?.designation}</LargeText>
+                    {groupData?.participant && (
+                        <LargeText style={styles.participant}>{`${groupData?.participant} Participant`}</LargeText>
+                    )}
+                </Wrapper>
+                <Icon color={colors.appIconColor3} size={totalSize(2.4)}
+                    name="dots-three-vertical" type="entypo" />
+            </RowWrapper>
+            <Spacer />
+            <Hrline />
             <Wrapper style={[{ flex: 1 }]}>
                 <GiftedChat
                     alwaysShowSend
@@ -145,7 +169,7 @@ const Conversation = ({ navigation }) => {
                     }}
                 />
             </Wrapper>
-        </MainWrapper>
+        </MainWrapper >
     );
 };
 const styles = StyleSheet.create({
@@ -161,6 +185,42 @@ const styles = StyleSheet.create({
     imageWrapper: {
         justifyContent: "center",
     },
+
+    card: {
+        paddingVertical: height(2.2),
+        borderLeftWidth: 3,
+    },
+    groups: {
+        fontSize: totalSize(1.9)
+    },
+    participant: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor10,
+
+
+
+    },
+    countWrapper: {
+        backgroundColor: colors.appBgColor11,
+        borderRadius: totalSize(5),
+        paddingHorizontal: totalSize(1),
+        verticalAlign: 'middle',
+        textAlignVertical: 'center'
+    },
+    count: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor2,
+        marginVertical: height(1),
+
+    },
+    icon: {
+        backgroundColor: colors.appBgColor1,
+        padding: totalSize(.65),
+        borderRadius: totalSize(5)
+    },
+    iconWrapper: {
+        flexDirection: 'row'
+    }
 });
 
 export default Conversation;

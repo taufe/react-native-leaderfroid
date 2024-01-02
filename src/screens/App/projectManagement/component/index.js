@@ -1,46 +1,48 @@
 import { Icon } from "react-native-elements"
 import { CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, RegularText, RowWrapper, RowWrapperBasic, Spacer, Vrline, Wrapper } from "../../../../components"
 import { AppIcons } from "../../../../assets"
-import { StyleSheet } from "react-native"
+import { StyleSheet, TouchableOpacity } from "react-native"
 import { totalSize, width, height } from 'react-native-dimension';
 import { colors } from "../../../../constants";
 
-export const ProjectManagementComponent = ({ projectName, No, cost, date, pending }) => {
+export const ProjectManagementComponent = ({ projectName, No, cost, date, pending, onPress }) => {
     return (
-        <ComponentWrapper>
-            <CardWrapper style={styles.card}>
-                <RowWrapper>
-                    <Wrapper>
-                        <LargeTitle style={styles.projectName}>{projectName}</LargeTitle>
-                        <Spacer isTiny />
-                        <LargeText style={styles.no}>{`No.${No}`}</LargeText>
-                        <Spacer isSmall />
-                        <LargeTitle style={styles.cost}>{`Cost : ${cost}`}</LargeTitle>
-                        <Spacer height={height(2.7)} />
-                        <Hrline Width={width(60)} style={{ opacity: .3 }} />
-                        <Spacer isTiny />
-                    </Wrapper>
-                    <Wrapper style={styles.threeDotsWrapper}>
-                        <Icon color={colors.appIconColor3} size={totalSize(2.4)}
-                            name="dots-three-horizontal" type="entypo" />
-                    </Wrapper>
-                </RowWrapper>
-                <RowWrapper>
-                    <Wrapper>
-                        <RowWrapperBasic>
-                            <LargeText style={styles.createdAt}>Created on :</LargeText>
-                            <LargeText style={styles.date}>{date}</LargeText>
-                            <Vrline style={{ opacity: .3 }} />
-                            <RegularText style={styles.dot}>{'\u2B24'}</RegularText>
-                            <LargeText style={styles.pending}>{pending}</LargeText>
-                        </RowWrapperBasic>
-                    </Wrapper>
-                    <Wrapper>
-                        <Custom size={totalSize(2.2)} icon={AppIcons.messageText} />
-                    </Wrapper>
-                </RowWrapper>
-            </CardWrapper>
-        </ComponentWrapper>
+        <TouchableOpacity onPress={onPress}>
+            <ComponentWrapper>
+                <CardWrapper style={styles.card}>
+                    <RowWrapper>
+                        <Wrapper>
+                            <LargeTitle style={styles.projectName}>{projectName}</LargeTitle>
+                            <Spacer isTiny />
+                            <LargeText style={styles.no}>{`No.${No}`}</LargeText>
+                            <Spacer isSmall />
+                            <LargeTitle style={styles.cost}>{`Cost : ${cost}`}</LargeTitle>
+                            <Spacer height={height(2.7)} />
+                            <Hrline Width={width(60)} style={{ opacity: .3 }} />
+                            <Spacer isTiny />
+                        </Wrapper>
+                        <Wrapper style={styles.threeDotsWrapper}>
+                            <Icon color={colors.appIconColor3} size={totalSize(2.4)}
+                                name="dots-three-horizontal" type="entypo" />
+                        </Wrapper>
+                    </RowWrapper>
+                    <RowWrapper>
+                        <Wrapper>
+                            <RowWrapperBasic>
+                                <LargeText style={styles.createdAt}>Created on :</LargeText>
+                                <LargeText style={styles.date}>{date}</LargeText>
+                                <Vrline style={{ opacity: .3 }} />
+                                <RegularText style={styles.dot}>{'\u2B24'}</RegularText>
+                                <LargeText style={styles.pending}>{pending}</LargeText>
+                            </RowWrapperBasic>
+                        </Wrapper>
+                        <Wrapper>
+                            <Custom size={totalSize(2.2)} icon={AppIcons.messageText} />
+                        </Wrapper>
+                    </RowWrapper>
+                </CardWrapper>
+            </ComponentWrapper>
+        </TouchableOpacity>
     )
 }
 

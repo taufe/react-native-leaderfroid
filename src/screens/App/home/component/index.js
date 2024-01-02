@@ -4,11 +4,11 @@ import { colors } from "../../../../constants"
 import { AppIcons } from "../../../../assets"
 import { totalSize, width, height } from 'react-native-dimension';
 
-export const HomeNotification = () => {
+export const HomeNotification = ({ onPressNotification }) => {
     return (
         <RowWrapper>
             <LargeTitle style={styles.hey}>Hey!</LargeTitle>
-            <Custom styles={styles.notification} size={totalSize(2.5)} icon={AppIcons.notificationBing} />
+            <Custom onPress={onPressNotification} styles={styles.notification} size={totalSize(2.5)} icon={AppIcons.notificationBing} />
         </RowWrapper>
     )
 }
@@ -22,7 +22,7 @@ export const Heading = ({ heading }) => {
 }
 export const GroupCard = ({ groupImages, groupName, teamManagement, profileImages, participationCount, bgColor }) => {
     return (
-        <CardWrapper style={{ backgroundColor: bgColor }}>
+        <CardWrapper style={{ ...styles.card, backgroundColor: bgColor }}>
             <RowWrapper>
                 <Wrapper>
                     <LargeTitle style={styles.groupName}>{groupName}</LargeTitle>
@@ -67,6 +67,9 @@ export const ManagementComponent = ({ icon, managementText, bgColor, onPress }) 
 }
 
 const styles = StyleSheet.create({
+    card: {
+        width: width(84.1)
+    },
     hey: {
         color: colors.appTextColor4,
         fontSize: totalSize(2.2)

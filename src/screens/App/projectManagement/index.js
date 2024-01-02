@@ -5,7 +5,7 @@ import useProjectManagement from './hook'
 import { width } from 'react-native-dimension';
 
 const ProjectManagement = ({ navigation }) => {
-    const { onPressTab, activeTab } = useProjectManagement(navigation)
+    const { onPressTab, activeTab, onPress } = useProjectManagement(navigation)
     return (
         <MainWrapper>
             <MainHeader title={'Project \nManagement'} goBack />
@@ -15,7 +15,7 @@ const ProjectManagement = ({ navigation }) => {
                 <ProjectTabsList onPress={onPressTab} activeTab={activeTab} />
             </Wrapper>
             <Spacer />
-            <ProjectManagementList />
+            <ProjectManagementList onPress={onPress} />
         </MainWrapper>
     )
 }

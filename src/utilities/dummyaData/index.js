@@ -1,5 +1,5 @@
 import { AppIcons, AppImages } from "../../assets";
-import { height } from 'react-native-dimension';
+import { height, totalSize } from 'react-native-dimension';
 import { SCREEN } from "../../constants";
 import moment from "moment";
 
@@ -50,7 +50,7 @@ export const GroupData = [
 export const GroupChatData = [
     {
         id: 1,
-        bgColor: '#E0F1FD',
+        borderColor: '#1F8235',
         groups: 'All Employees',
         profileImages: [
             { image: AppImages.profile1 },
@@ -62,7 +62,7 @@ export const GroupChatData = [
     },
     {
         id: 2,
-        bgColor: '#E0F1FD',
+        borderColor: '#F45A45',
         groups: 'New Group',
         profileImages: [
             { image: AppImages.profile1 },
@@ -74,7 +74,7 @@ export const GroupChatData = [
     },
     {
         id: 3,
-        bgColor: '#E0F1FD',
+        borderColor: '#367FFA',
         groups: 'Worker Group',
         profileImages: [
             { image: AppImages.profile1 },
@@ -86,7 +86,7 @@ export const GroupChatData = [
     },
     {
         id: 4,
-        bgColor: '#E0F1FD',
+        borderColor: '#BA68C8',
         groups: 'Experts Group',
         profileImages: [
             { image: AppImages.profile1 },
@@ -98,7 +98,7 @@ export const GroupChatData = [
     },
     {
         id: 5,
-        bgColor: '#E0F1FD',
+        borderColor: '#33A5C9',
         groups: 'Customer Service',
         profileImages: [
             { image: AppImages.profile1 },
@@ -188,6 +188,26 @@ export const DeliveryManagementData = [
         completed: 'completed'
     },
 ]
+export const ProfileInformationData = [
+    {
+        id: 1,
+        projectName: 'Project name',
+        No: '22345',
+        assignedTo: [
+            { image: AppImages.profile1 },
+        ],
+        date: moment().format('MMM DD, YYYY'),
+        doing: 'On Doing'
+    },
+    {
+        id: 2,
+        projectName: 'Project name',
+        No: '22345',
+        date: moment().format('MMM DD, YYYY'),
+        doing: 'On Doing'
+    },
+
+]
 export const SalesManagementData = [
     {
         id: 1,
@@ -257,9 +277,127 @@ export const PersonalManagementData = [
     },
 ]
 
+export const DataIntegrationData = [
+    {
+        id: 1,
+        fileImage: AppImages.file,
+        fileName: 'Project file.csv',
+        fileSize: '341 kb'
+
+    },
+    {
+        id: 2,
+        fileImage: AppImages.file,
+        fileName: 'Project file.csv',
+        fileSize: '341 kb'
+    },
+    {
+        id: 3,
+        fileImage: AppImages.file,
+        fileName: 'Project file.csv',
+        fileSize: '341 kb'
+    },
+    {
+        id: 4,
+        fileImage: AppImages.file,
+        fileName: 'Project file.csv',
+        fileSize: '341 kb'
+    },
+    {
+        id: 5,
+        fileImage: AppImages.file,
+        fileName: 'Project file.csv',
+        fileSize: '341 kb'
+    },
+
+]
+
+export const NotificationsData = [
+    {
+        id: 1,
+        icon: AppIcons.taskSquare,
+        description: 'You have been added a \nnew task',
+        time: '12:33 PM',
+        size: totalSize(3.2)
+
+    },
+    {
+        id: 2,
+        icon: AppIcons.move,
+        description: 'You have been added a \nnew task',
+        time: '12:33 PM',
+        size: totalSize(3.5)
+
+    },
+    {
+        id: 3,
+        icon: AppIcons.good,
+        description: 'You have been added a \nnew task',
+        time: '12:33 PM',
+        size: totalSize(3.6)
+
+    },
+    {
+        id: 4,
+        icon: AppIcons.export,
+        description: 'You have been added a \nnew task',
+        time: '12:33 PM',
+        size: totalSize(3)
+
+    },
+
+
+]
+export const NotesData = [
+    {
+        id: 1,
+        headiing: 'How to maintain \nsymptoms',
+        description: "1. Lorem ipsum dolor sit amet, consecteturadipis. \n2. cing elit. Etiam eu turpis molestie, dictum est asollicitudin lacus. \n3. risus. Maecenas ut interdum. \n4. risus. Maecenas ut interdum risus. Maecenas ut interdum. \n5. risus. Maecenas ut interdum risus. Maecenas ut interdum. \n6. risus. Maecenas ut interdum risus. Maecenas ut interdum. ",
+        bgColor: '#E8FFE9'
+    },
+    {
+        id: 2,
+        headiing: 'How to maintain \nsymptoms',
+        description: "1. Lorem ipsum dolor sit amet, consecteturadipis. \n2. cing elit. Etiam eu turpis molestie, dictum est asollicitudin lacus. \n3. risus. Maecenas ut interdum. \n4. risus. Maecenas ut interdum risus. Maecenas ut interdum. \n5. risus. Maecenas ut interdum risus. Maecenas ut interdum. \n6. risus. Maecenas ut interdum risus. Maecenas ut interdum. ",
+        bgColor: '#FFEADD'
+    },
+
+]
+export const ChatData = [
+    {
+        id: 1,
+        profile: AppImages.profile1,
+        designation: "Project Manager",
+
+    },
+    {
+        id: 2,
+        profile: AppImages.profile2,
+        designation: "Sales Manager",
+
+    },
+    {
+        id: 3,
+        profile: AppImages.profile3,
+        designation: "Delivery Manager",
+
+    },
+
+
+]
+
 export const ProjectManagementTabs = ['New Projects', 'To be Scheduled', 'Scheduled']
+export const InformationTabs = ['On Doing', 'Completed']
 export const SalesManagementTabs = ['New Lead', 'Assigned to Sales', 'SchedulAppointment Set']
 export const StatusData = [
     { value: 'pending', label: 'pending' },
     { value: 'completed', label: 'completed' },
+]
+export const selectCategoryData = [
+    { value: 'Technician', label: 'Technician' },
+    { value: 'Mechinical', label: 'Mechinical' },
+]
+export const HolidaysData = [
+    { value: '2 days', label: '2 days' },
+    { value: '3 days', label: '3 days' },
 ]

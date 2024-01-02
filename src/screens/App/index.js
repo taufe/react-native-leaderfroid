@@ -9,8 +9,15 @@ import DeliveryManagement from "./deliveryManagement";
 import PersonalManagement from "./personalManagement";
 import CreateNewLead from "./createNewLead";
 import Conversation from "./conversation";
+import ProfileInformation from "./profileInformation";
+import Report from "./report";
+import Notification from "./notifitcation";
+import AssigningDetails from "./assigningDetails";
+import DeliverySheet from "./deliverySheet";
+import Map from "./map";
 export {
     Home, Profile, Calender, Chat, Data, SalesManagement,
     PersonalManagement, CreateNewLead, Conversation,
-    ProjectManagement, DeliveryManagement,
+    ProjectManagement, DeliveryManagement, ProfileInformation,
+    Report, Notification, AssigningDetails, DeliverySheet, Map
 }

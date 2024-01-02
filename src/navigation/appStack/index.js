@@ -47,7 +47,7 @@ function MyTabs() {
             component: App.Profile,
             iconName: 'user-o',
             iconType: 'font-awesome',
-            label: 'Profile',
+            label: 'Account',
 
         },
 
@@ -102,6 +102,12 @@ const AppNavigation = () => {
             <Screen name={SCREEN.personalManagement} component={App.PersonalManagement} />
             <Screen name={SCREEN.createNewLead} component={App.CreateNewLead} />
             <Screen name={SCREEN.conversation} component={App.Conversation} />
+            <Screen name={SCREEN.profileInformation} component={App.ProfileInformation} />
+            <Screen name={SCREEN.report} component={App.Report} />
+            <Screen name={SCREEN.notifitcation} component={App.Notification} />
+            <Screen name={SCREEN.assigningDetails} component={App.AssigningDetails} />
+            <Screen name={SCREEN.deliverySheet} component={App.DeliverySheet} />
+            <Screen name={SCREEN.map} component={App.Map} />
 
 
         </Navigator>

@@ -1,50 +1,51 @@
 import { Icon } from "react-native-elements"
 import { CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, Spacer, Vrline, Wrapper } from "../../../../components"
 import { AppIcons } from "../../../../assets"
-import { StyleSheet } from "react-native"
+import { StyleSheet, TouchableOpacity } from "react-native"
 import { totalSize, width, height } from 'react-native-dimension';
 import { colors } from "../../../../constants";
 
-export const SalesManagementComponent = ({ projectName, price, profileImage, date, profileName }) => {
+export const SalesManagementComponent = ({ projectName, price, profileImage, date, profileName, onpressLeadCard }) => {
     return (
-        <ComponentWrapper>
-            <CardWrapper style={styles.card}>
-                <RowWrapper>
-                    <Wrapper>
-                        <LargeTitle style={styles.projectName}>{projectName}</LargeTitle>
-                        <Spacer isTiny />
-                        <LargeText style={styles.price}>{`$${price}`}</LargeText>
-                        <Spacer isSmall />
-                        <RowWrapperBasic>
-                            <PrimaryImage source={profileImage} size={totalSize(2.9)}
-                                borderRadius={totalSize(5)} />
-                            <LargeTitle style={styles.profileName}>{profileName}</LargeTitle>
-                        </RowWrapperBasic>
-                        <Spacer height={height(1.5)} />
-                        <Hrline Width={width(60)} style={{ opacity: .3 }} />
-                        <Spacer isTiny />
-                    </Wrapper>
-                    <Wrapper style={styles.threeDotsWrapper}>
-                        <Icon color={colors.appIconColor3} size={totalSize(2.4)}
-                            name="dots-three-horizontal" type="entypo" />
-                    </Wrapper>
-                </RowWrapper>
-                <RowWrapper>
-                    <Wrapper>
-                        <RowWrapperBasic>
-                            <LargeText style={styles.createdAt}>Created On :</LargeText>
-                            <LargeText style={styles.date}>{date}</LargeText>
-                        </RowWrapperBasic>
-                    </Wrapper>
-                    <Wrapper>
-                        <Custom size={totalSize(2.2)} icon={AppIcons.messageText} />
-                    </Wrapper>
-                </RowWrapper>
-            </CardWrapper>
-            <Spacer />
-            <Hrline Width={width(90)} style={{ opacity: .3 }} />
-
-        </ComponentWrapper>
+        <TouchableOpacity onPress={onpressLeadCard}>
+            <ComponentWrapper>
+                <CardWrapper style={styles.card}>
+                    <RowWrapper>
+                        <Wrapper>
+                            <LargeTitle style={styles.projectName}>{projectName}</LargeTitle>
+                            <Spacer isTiny />
+                            <LargeText style={styles.price}>{`$${price}`}</LargeText>
+                            <Spacer isSmall />
+                            <RowWrapperBasic>
+                                <PrimaryImage source={profileImage} size={totalSize(2.9)}
+                                    borderRadius={totalSize(5)} />
+                                <LargeTitle style={styles.profileName}>{profileName}</LargeTitle>
+                            </RowWrapperBasic>
+                            <Spacer height={height(1.5)} />
+                            <Hrline Width={width(60)} style={{ opacity: .3 }} />
+                            <Spacer isTiny />
+                        </Wrapper>
+                        <Wrapper style={styles.threeDotsWrapper}>
+                            <Icon color={colors.appIconColor3} size={totalSize(2.4)}
+                                name="dots-three-horizontal" type="entypo" />
+                        </Wrapper>
+                    </RowWrapper>
+                    <RowWrapper>
+                        <Wrapper>
+                            <RowWrapperBasic>
+                                <LargeText style={styles.createdAt}>Created On :</LargeText>
+                                <LargeText style={styles.date}>{date}</LargeText>
+                            </RowWrapperBasic>
+                        </Wrapper>
+                        <Wrapper>
+                            <Custom size={totalSize(2.2)} icon={AppIcons.messageText} />
+                        </Wrapper>
+                    </RowWrapper>
+                </CardWrapper>
+                <Spacer />
+                <Hrline Width={width(90)} style={{ opacity: .3 }} />
+            </ComponentWrapper>
+        </TouchableOpacity>
     )
 }
 

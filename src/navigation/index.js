@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
 import AuthNavigation from './authStack'
 import { SCREEN } from '../constants'
 import { NavigationContainer } from '@react-navigation/native'

@@ -8,10 +8,10 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: totalSize(5),
         position: 'absolute',
-        bottom: height(4),
-        right: width(6)
+        top: height(10),
+        right: width(6),
+        padding: totalSize(2.3)
+
     },
-    plus: {
-        padding: totalSize(2.3),
-    }
+
 })

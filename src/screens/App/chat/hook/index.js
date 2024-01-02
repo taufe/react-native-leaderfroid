@@ -3,8 +3,8 @@ import { SCREEN } from "../../../../constants"
 
 const useChat = (navigation) => {
 
-    const onPressChatCard = () => {
-        navigation.navigate(SCREEN.conversation)
+    const onPressChatCard = (item) => {
+        navigation.navigate(SCREEN.conversation, { item: item })
     }
 
     return { onPressChatCard }

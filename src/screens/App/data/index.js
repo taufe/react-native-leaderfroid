@@ -1,11 +1,19 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Hrline, MainHeader, ScrollView, Spacer } from '../../../components';
+import { DataIntegrationList } from '../../../components/listComponents';
+import { MainWrapper, Wrapper } from './../../../components/wrappers/index';
+import { ButtonsComponent } from './component';
 
 const Data = () => {
     return (
-        <View>
-            <Text>Data</Text>
-        </View>
+        <MainWrapper>
+            <MainHeader title={'Data \nIntegration'} goBack />
+            <Hrline />
+            <Spacer />
+            <ScrollView>
+                <DataIntegrationList />
+            </ScrollView>
+            <ButtonsComponent />
+        </MainWrapper>
     )
 }
 

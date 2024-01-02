@@ -12,7 +12,7 @@ export const PrimaryCheckBox = ({ textStyle, containerStyle, text, }) => {
     const checkboxIconType = 'material-community'
     const checkboxappIconsize = sizes.icons.medium
     const checkIconColor = colors.primary
-    const uncheckIconColor = colors.appIconColor3
+    const uncheckIconColor = colors.appIconColor4
     return (
         <IconWithLeftText
             text={text}
@@ -20,7 +20,7 @@ export const PrimaryCheckBox = ({ textStyle, containerStyle, text, }) => {
             iconType={checkboxIconType}
             iconSize={checkboxappIconsize}
             tintColor={checked ? checkIconColor : uncheckIconColor}
-            // onPress={onPress}
+            iconStyle={{ color: colors.appBgColor2 }}
             onPress={() => setCheck(!checked)}
             textStyle={[styles.checkboxText, textStyle]}
             containerStyle={containerStyle}
@@ -32,7 +32,7 @@ export const PrimaryCheckBox = ({ textStyle, containerStyle, text, }) => {
 
 const styles = StyleSheet.create({
     checkboxText: {
-        color: colors.appTextColor4,
+        color: colors.appTextColor2,
         fontSize: totalSize(1.5),
 
     }

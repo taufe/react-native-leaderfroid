@@ -24,6 +24,12 @@ export const SCREEN = {
     personalManagement: 'personalManagement',
     createNewLead: 'createNewLead',
     conversation: 'conversation',
+    profileInformation: 'profileInformation',
+    report: 'report',
+    notifitcation: 'notifitcation',
+    assigningDetails: 'assigningDetails',
+    deliverySheet: 'deliverySheet',
+    map: 'map',
 
 }
 

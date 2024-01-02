@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         },
         shadowOpacity: 0.005,
         shadowRadius: 3.84,
-        elevation: 1,
+        // elevation: 1,
     },
     textInputSearch: {
 

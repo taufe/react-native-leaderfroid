@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         fontFamily: fontFamily.appTextSemiBold,
     },
     buttonColored: {
-        height: height(6.5),
+        height: height(7),
         borderRadius: 10,
         // width: 130,
         fontFamily: fontFamily.appTextBold,

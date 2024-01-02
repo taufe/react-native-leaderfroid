@@ -15,7 +15,8 @@ export const TextInputColored = ({ autoFocus, iconName, error, onPressRight, ico
     placeholder, editable, animation, multiline, onFocus, buttonContentStyle, onBlur,
     onChangeText, rightStyle, secureTextEntry, value, iconColor, iconSize, containerStyle,
     inputContainerStyle, onPressIcon, inputStyle, right, iconStyle, lefticonName,
-    lefticonType, }) => {
+    lefticonType, additionalIconName, additionalIconType, additionalIconSize,
+    additionalIconStyle, additionalIconColor, onPressAdditionalIcon }) => {
     var focused = false
     return (
         <TouchableOpacity
@@ -81,21 +82,62 @@ export const TextInputColored = ({ autoFocus, iconName, error, onPressRight, ico
                                 />
                         }
                     </View>
+
                     {
                         right ?
-                            <TouchableOpacity activeOpacity={.5}
-                                style={[{ height: height(4), paddingHorizontal: 12 }, rightStyle]}
-                                onPress={onPressRight}>
-                                {right}
-                            </TouchableOpacity>
-                            :
+                            (
+                                <>
+                                    {/* Add another TouchableOpacity or View for the second icon */}
+                                    <TouchableOpacity
+                                        activeOpacity={.5}
+                                        style={[{ height: height(4), paddingHorizontal: 12 }, additionalIconStyle]}
+                                        onPress={onPressAdditionalIcon}
+                                    >
+                                        {additionalIcon}
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        activeOpacity={.5}
+                                        style={[{ height: height(4), paddingHorizontal: 12 }, rightStyle]}
+                                        onPress={onPressRight}
+                                    >
+                                        {right}
+                                    </TouchableOpacity>
+
+
+                                </>
+                            ) :
                             iconName ?
-                                <View style={{ padding: 12, alignItems: 'center' }}>
-                                    <Icon name={iconName} type={iconType} size={iconSize ? iconSize : sizes.icons.medium} color={iconColor ? iconColor : colors.appTextColor3} iconStyle={iconStyle} onPress={onPressIcon} />
-                                </View>
-                                :
+                                (
+
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        {/* Add another View for the second icon */}
+                                        <View style={{ padding: 0, alignItems: 'center' }}>
+                                            <Icon
+                                                name={additionalIconName}
+                                                type={additionalIconType}
+                                                size={additionalIconSize ? additionalIconSize : sizes.icons.medium}
+                                                color={additionalIconColor ? additionalIconColor : colors.appTextColor3}
+                                                iconStyle={additionalIconStyle}
+                                                onPress={onPressAdditionalIcon}
+                                            />
+                                        </View>
+                                        <View style={{ padding: 12, alignItems: 'center' }}>
+                                            <Icon
+                                                name={iconName}
+                                                type={iconType}
+                                                size={iconSize ? iconSize : sizes.icons.medium}
+                                                color={iconColor ? iconColor : colors.appTextColor3}
+                                                iconStyle={iconStyle}
+                                                onPress={onPressIcon}
+                                            />
+                                        </View>
+
+
+                                    </View>
+                                ) :
                                 null
                     }
+
 
                 </RowWrapperBasic>
             </Wrapper>

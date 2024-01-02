@@ -7,9 +7,7 @@ export const AppIcons = {
     gallery: require('./gallery.png'),
     delete: require('./delete.png'),
     good: require('./good.png'),
-    image3: require('./image1.png'),
-    image2: require('./image2.png'),
-    image3: require('./image3.png'),
+
     logout: require('./logout.png'),
     messageText: require('./messageText.png'),
     move: require('./move.png'),
@@ -20,5 +18,8 @@ export const AppIcons = {
     sales: require('./sales.png'),
     share: require('./share.png'),
     taskSquare: require('./taskSquare.png'),
+    googleDrive: require('./tick.png'),
+    googleDrive: require('./googleDrive.png'),
+    calendarAdd: require('./calendarAdd.png'),
     tick: require('./tick.png'),
 }

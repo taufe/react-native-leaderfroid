@@ -25,8 +25,8 @@ export const ComponentWrapper = props => {
     );
 }
 
-export const ImageBackgroundWrapper = props => {
-    const { children, style, source, resizeMode } = props
+export const ImageBackgroundWrapper = ({ children, style, source, resizeMode }) => {
+
     return (
         <ImageBackground resizeMode={resizeMode ? resizeMode : 'contain'} source={source} style={[appStyles.bgContainer, style]}>
             {children}

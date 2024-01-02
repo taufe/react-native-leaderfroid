@@ -1,20 +1,27 @@
 import { PrimaryImage } from "../images"
-import { LargeText, LargeTitle, MediumText, RegularText } from "../text";
-import { Wrapper } from "../wrappers"
+import { LargeText, LargeTitle, MediumText } from "../text";
+import { RowWrapperBasic, Wrapper } from "../wrappers"
 import { height, width, totalSize } from 'react-native-dimension';
 import { StyleSheet } from 'react-native';
 import { FlatList } from "react-native";
 import { GroupCard, ManagementComponent } from "../../screens/App/home/component";
-import { DeliveryManagementData, GroupChatData, GroupData, ManagementData, PersonalManagementData, ProjectManagementData, ProjectManagementTabs, SalesManagementData, SalesManagementTabs } from "../../utilities/dummyaData";
+import { ChatData, DataIntegrationData, DeliveryManagementData, GroupChatData, GroupData, InformationTabs, ManagementData, NotesData, NotificationsData, PersonalManagementData, ProfileInformationData, ProjectManagementData, ProjectManagementTabs, SalesManagementData, SalesManagementTabs, SettingsData } from "../../utilities/dummyaData";
 import { colors } from "../../constants";
-import { TabCard } from "../commonComponent";
+import { DashedborderImage, NotesComponent, TabCard, TabCardInformation } from "../commonComponent";
 import { Spacer } from "..";
 import { ProjectManagementComponent } from "../../screens/App/projectManagement/component";
 import { DeliveryManagementComponent } from "../../screens/App/deliveryManagement/component";
 import { PersonalManagementComponent } from "../../screens/App/personalManagement/component";
 import { SalesManagementComponent } from "../../screens/App/salesManagement/component";
-import { AppImages } from "../../assets";
+import { AppIcons, AppImages } from "../../assets";
 import { GroupChat } from "../../screens/App/chat/component";
+import { DataIntegration } from "../../screens/App/data/component";
+import { Setttings } from "../../screens/App/profile/component";
+import { ProfileInformationComponent } from "../../screens/App/profileInformation/component";
+import { Icon } from "react-native-elements";
+import { ReportComponent } from "../../screens/App/report/component";
+import { Notificaiton } from "../../screens/App/notifitcation/component";
+import { ChatComponent } from "../../screens/App/deliverySheet/component";
 
 
 export const OnBoardingWrapper = ({ uri, skip, onPressSkip, title, description, bgColor, imageHeight, bottom }) => {
@@ -59,12 +66,12 @@ export const GroupChatList = ({ onPressChatCard }) => {
                         profileImages={item?.profileImages}
                         participationCount={item?.participationCount}
                         participant={item?.participant}
-                        onPressChatCard={onPressChatCard}
+                        borderColor={item?.borderColor}
+                        onPressChatCard={() => onPressChatCard(item)}
 
                     />
                 )
             }}
-
         />
     )
 }
@@ -90,6 +97,24 @@ export const ManagementList = ({ onPress }) => {
 }
 
 
+export const InformationTabList = ({ onPress, activeTab, }) => {
+    return (
+        <FlatList
+            data={InformationTabs}
+            contentContainerStyle={[styles.listContainer]}
+            nestedScrollEnabled
+            keyExtractor={(item, index) => index}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            ItemSeparatorComponent={<Spacer width={width(3)} />}
+            renderItem={({ item, index }) => {
+                return (
+                    <TabCardInformation onPress={() => onPress(index)} isActive={index == activeTab} item={item} />
+                )
+            }}
+        />
+    )
+}
 export const ProjectTabsList = ({ onPress, activeTab, }) => {
     return (
         <FlatList
@@ -109,7 +134,7 @@ export const ProjectTabsList = ({ onPress, activeTab, }) => {
     )
 }
 
-export const ProjectManagementList = () => {
+export const ProjectManagementList = ({ onPress }) => {
     return (
         <FlatList
             data={ProjectManagementData}
@@ -123,6 +148,7 @@ export const ProjectManagementList = () => {
                         date={item?.date}
                         cost={item?.cost}
                         No={item?.No}
+                        onPress={onPress}
 
                     />
                 )
@@ -130,7 +156,7 @@ export const ProjectManagementList = () => {
         />
     )
 }
-export const DeliveryManagementList = () => {
+export const DeliveryManagementList = ({ onPressDeliverySheet }) => {
     return (
         <FlatList
             data={DeliveryManagementData}
@@ -145,17 +171,41 @@ export const DeliveryManagementList = () => {
                         date={item?.date}
                         assignedTo={item?.assignedTo}
                         No={item?.No}
+                        onPressDeliverySheet={onPressDeliverySheet}
                     />
                 )
             }}
         />
     )
 }
-export const SalesManagementList = () => {
+export const ProfileInformationList = () => {
+    return (
+        <FlatList
+            data={ProfileInformationData}
+            keyExtractor={(item, index) => index}
+            ItemSeparatorComponent={<Spacer />}
+            ListFooterComponent={<Spacer />}
+            renderItem={({ item, index }) => {
+                return (
+                    <ProfileInformationComponent
+                        projectName={item?.projectName}
+                        doing={item?.doing}
+                        date={item?.date}
+                        assignedTo={item?.assignedTo}
+                        No={item?.No}
+                    />
+                )
+            }}
+        />
+    )
+}
+
+export const SalesManagementList = ({ onpressLeadCard }) => {
     return (
         <FlatList
             data={SalesManagementData}
             keyExtractor={(item, index) => index}
+
             ItemSeparatorComponent={<Spacer />}
             ListFooterComponent={<Spacer />}
             ListEmptyComponent={<Wrapper style={styles.noDataWrapper}>
@@ -170,6 +220,7 @@ export const SalesManagementList = () => {
                         profileImage={item?.profileImage}
                         price={item?.price}
                         profileName={item?.profileName}
+                        onpressLeadCard={onpressLeadCard}
 
                     />
                 )
@@ -197,7 +248,7 @@ export const SalesTabsList = ({ onPress, activeTab, }) => {
     )
 }
 
-export const PersonalManagementList = () => {
+export const PersonalManagementList = ({ onPressViewReport }) => {
     return (
         <FlatList
             data={PersonalManagementData}
@@ -210,10 +261,114 @@ export const PersonalManagementList = () => {
                         profileImages={item?.profile}
                         profileName={item?.profileName}
                         catergory={item?.catergory}
+                        onPressViewReport={() => onPressViewReport(item)}
                     />
                 )
             }}
         />
+    )
+}
+export const DataIntegrationList = () => {
+    return (
+        <FlatList
+            data={DataIntegrationData}
+            keyExtractor={(item, index) => index}
+            ItemSeparatorComponent={<Spacer isSmall />}
+            ListFooterComponent={<Spacer height={height(8)} />}
+            ListEmptyComponent={<Wrapper style={styles.noDataWrapper}>
+                <PrimaryImage size={totalSize(30)} source={AppImages.salesManagement} />
+                <LargeText style={styles.noDataText}>{'Nothing to show right now'}</LargeText>
+            </Wrapper>}
+            renderItem={({ item, index }) => {
+                return (
+                    <DataIntegration
+                        fileImage={item?.fileImage}
+                        fileName={item?.fileName}
+                        fileSize={item?.fileSize}
+                    />
+                )
+            }}
+        />
+    )
+}
+
+export const NotificationList = ({ toggleSwitch, setToggleSwitch }) => {
+    return (
+        <FlatList
+            data={NotificationsData}
+            keyExtractor={(item, index) => index}
+            ItemSeparatorComponent={<Spacer />}
+            ListFooterComponent={<Spacer />}
+            renderItem={({ item, index }) => {
+                return (
+                    <Notificaiton
+                        icon={item?.icon}
+                        description={item?.description}
+                        time={item?.time}
+                        size={item?.size}
+                    />
+                )
+            }}
+        />
+    )
+}
+export const NotesList = ({ data }) => {
+    return (
+        <FlatList
+            horizontal={true}
+            data={data}
+            keyExtractor={(item, index) => index}
+            ItemSeparatorComponent={<Spacer />}
+            ListFooterComponent={<Spacer />}
+            renderItem={({ item, index }) => {
+                return (
+                    <NotesComponent
+                        heading={item?.headiing}
+                        pointList={item?.description}
+                        bgColor={item?.bgColor}
+                    />
+                )
+            }}
+        />
+    )
+}
+export const ChatList = ({ onpressChatCard }) => {
+    return (
+        <FlatList
+            data={ChatData}
+            keyExtractor={(item, index) => index}
+            ItemSeparatorComponent={<Spacer isSmall />}
+            ListFooterComponent={<Spacer />}
+            renderItem={({ item, index }) => {
+                return (
+                    <ChatComponent
+                        profile={item?.profile}
+                        designation={item?.designation}
+                        onpressChatCard={() => onpressChatCard(item)}
+                    />
+                )
+            }}
+        />
+    )
+}
+export const PhotoList = ({ onpressChatCard, profilePhotos, openGallery }) => {
+    return (
+        <RowWrapperBasic>
+            <Wrapper style={{ maxWidth: width(70) }}>
+                <FlatList
+                    data={profilePhotos}
+                    ListEmptyComponent={<DashedborderImage />}
+                    horizontal
+                    renderItem={({ item, index }) => {
+
+                        return <DashedborderImage source={{ uri: item.path }}
+                            borderRadius={totalSize(5)} size={totalSize(4)} />
+                    }}
+                    collapsable={true}
+                />
+            </Wrapper>
+            <DashedborderImage source={AppImages.plusCircle} size={totalSize(4.65)} onPress={openGallery} />
+        </RowWrapperBasic>
     )
 }
 
@@ -255,6 +410,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: totalSize(1.9),
         color: colors.appTextColor4
-    }
+    },
+
 
 })

@@ -15,6 +15,12 @@ export const AppImages = {
     googleDrive: require('./googleDrive.png'),
     dataIntegration: require('./dataIntegration.png'),
     salesManagement: require('./salesManagement.png'),
+    map: require('./map.png'),
+    file: require('./file.png'),
+    image1: require('./image1.png'),
+    image2: require('./image2.png'),
+    image3: require('./image3.png'),
+    plusCircle: require('./plusCircle.png'),
 
 
 }

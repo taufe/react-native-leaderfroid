@@ -18,7 +18,7 @@ export const MainHeader = ({ title, goBack }) => {
                     <TouchableOpacity style={styles.iconWrapper} onPress={() => navigation.goBack()} >
                         <Icon style={styles.icon} name='arrowleft' type='antdesign' size={22} color={colors.appIconColor2} />
                     </TouchableOpacity>
-                    <Spacer height={height(3)} />
+                    <Spacer height={height(2.5)} />
                 </Wrapper> : null
             }
             {title ?

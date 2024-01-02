@@ -14,7 +14,7 @@ const useCustomDropDown = (initialItems) => {
     return { open, setOpen, value, setValue, items, setItems };
 };
 
-const PrimaryDropDown = ({ title, placeholder, style, value, setValue, items, }) => {
+const PrimaryDropDown = ({ title, placeholder, style, value, setValue, items, bgColor }) => {
     const [open, setOpen] = useState(false)
     return (
         <Wrapper style={[styles.container, { zIndex: 1 }, style]}>
@@ -24,7 +24,7 @@ const PrimaryDropDown = ({ title, placeholder, style, value, setValue, items, })
                 placeholderStyle={{ color: colors.appTextColor5 }}
                 textStyle={styles.text}
                 showTickIcon={true}
-                style={[styles.dropDown,]}
+                style={{ ...styles.dropDown, backgroundColor: bgColor }}
                 open={open}
                 setOpen={setOpen}
                 value={value}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     dropDownContainer: {
         borderWidth: 1,
         borderRadius: 10,
-        borderColor: colors.appBorderColor3,
+        borderColor: colors.appBorderColor13,
         backgroundColor: colors.appBgColor1,
     },
 })

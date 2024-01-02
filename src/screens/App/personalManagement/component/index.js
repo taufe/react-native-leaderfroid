@@ -2,21 +2,24 @@ import { StyleSheet } from "react-native";
 import { CardWrapper, LargeText, MediumText, PrimaryImage, RowWrapper, RowWrapperBasic, Wrapper } from "../../../../components"
 import { totalSize, width, height } from 'react-native-dimension';
 import { colors } from "../../../../constants";
+import { TouchableOpacity } from "react-native";
 
-export const PersonalManagementComponent = ({ profileImages, profileName, catergory }) => {
+export const PersonalManagementComponent = ({ profileImages, profileName, catergory, onPressViewReport }) => {
     return (
-        <CardWrapper style={styles.card}>
-            <RowWrapper>
-                <RowWrapperBasic>
-                    <PrimaryImage size={totalSize(4.2)} source={profileImages} />
-                    <Wrapper style={{ paddingLeft: width(2) }}>
-                        <LargeText style={styles.profileName}>{profileName}</LargeText>
-                        <MediumText style={styles.catergory}>{catergory}</MediumText>
-                    </Wrapper>
-                </RowWrapperBasic>
-                <LargeText style={styles.viewReport}>View the report</LargeText>
-            </RowWrapper>
-        </CardWrapper>
+        <TouchableOpacity onPress={onPressViewReport}>
+            <CardWrapper style={styles.card}>
+                <RowWrapper>
+                    <RowWrapperBasic>
+                        <PrimaryImage size={totalSize(4.2)} source={profileImages} />
+                        <Wrapper style={{ paddingLeft: width(2) }}>
+                            <LargeText style={styles.profileName}>{profileName}</LargeText>
+                            <MediumText style={styles.catergory}>{catergory}</MediumText>
+                        </Wrapper>
+                    </RowWrapperBasic>
+                    <LargeText style={styles.viewReport}>View the report</LargeText>
+                </RowWrapper>
+            </CardWrapper>
+        </TouchableOpacity>
     )
 }
 

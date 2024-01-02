@@ -3,10 +3,10 @@ import { CardWrapper, LargeText, MediumText, PrimaryImage, RowWrapper, RowWrappe
 import { totalSize, height } from 'react-native-dimension';
 import { colors } from "../../../../constants";
 
-export const GroupChat = ({ groups, participant, profileImages, participationCount, onPressChatCard }) => {
+export const GroupChat = ({ groups, participant, profileImages, participationCount, onPressChatCard, borderColor }) => {
     return (
         <TouchableOpacity onPress={onPressChatCard}>
-            <CardWrapper style={styles.card}>
+            <CardWrapper style={{ ...styles.card, borderLeftColor: borderColor }}>
                 <RowWrapper>
                     <Wrapper>
                         <LargeText style={styles.groups}>{groups}</LargeText>
@@ -32,7 +32,8 @@ export const GroupChat = ({ groups, participant, profileImages, participationCou
 
 const styles = StyleSheet.create({
     card: {
-        paddingVertical: height(1.7)
+        paddingVertical: height(2.2),
+        borderLeftWidth: 3,
     },
     groups: {
         fontSize: totalSize(1.9)
