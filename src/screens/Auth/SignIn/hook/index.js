@@ -9,7 +9,7 @@ const usesignIn = (navigation) => {
         setShowPassword(!showPassword)
     }
     const onpressLogin = () => {
-        navigation.navigate(SCREEN.appStack)
+        navigation.navigate(SCREEN.technicianStack)
     }
 
     return { showPassword, setShowPassword, toggleShowPassword, onpressLogin }

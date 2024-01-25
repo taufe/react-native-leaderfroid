@@ -110,6 +110,49 @@ export const GroupChatData = [
     },
 
 ]
+export const PersonalChatData = [
+    {
+        id: 1,
+        borderColor: '#1F8235',
+        groups: 'Project Manager',
+        profile: AppImages.profile1,
+        usageTime: '11:12 PM',
+
+    },
+    {
+        id: 2,
+        borderColor: '#F45A45',
+        groups: 'Project Manager',
+        profile: AppImages.profile2,
+        usageTime: '11:12 PM',
+
+    },
+    {
+        id: 3,
+        borderColor: '#367FFA',
+        groups: 'Project Manager',
+        profile: AppImages.profile1,
+        usageTime: '11:12 PM',
+
+    },
+    {
+        id: 4,
+        borderColor: '#BA68C8',
+        groups: 'Project Manager',
+        profile: AppImages.profile1,
+        usageTime: '11:12 PM',
+
+    },
+    {
+        id: 5,
+        borderColor: '#33A5C9',
+        groups: 'Project Manager',
+        profile: AppImages.profile1,
+        usageTime: '11:12 PM',
+
+    },
+
+]
 
 export const ManagementData = [
     {
@@ -386,6 +429,17 @@ export const ChatData = [
 
 ]
 
+export const ChooseSelectionData = [
+    {
+        id: 1,
+        title: 'Continue as a Admin'
+    },
+    {
+        id: 2,
+        title: 'Continue as a Technician'
+    },
+]
+
 export const ProjectManagementTabs = ['New Projects', 'To be Scheduled', 'Scheduled']
 export const InformationTabs = ['On Doing', 'Completed']
 export const SalesManagementTabs = ['New Lead', 'Assigned to Sales', 'SchedulAppointment Set']
@@ -401,3 +455,25 @@ export const HolidaysData = [
     { value: '2 days', label: '2 days' },
     { value: '3 days', label: '3 days' },
 ]
+
+export const dummyLocations = [
+    {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        image: AppImages.profile1
+    },
+    {
+        latitude: 37.7895,
+        longitude: -122.4335,
+        image: AppImages.profile2
+    },
+    {
+        latitude: 37.787,
+        longitude: -122.4312,
+        image: AppImages.profile3
+    },
+];
+
+
+
+

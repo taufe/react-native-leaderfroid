@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { height, totalSize, width } from 'react-native-dimension';
 import Modal from 'react-native-modal';
-import { ButtonColored, CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, PrimaryCheckBox, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, Spacer, TextInputColored, Wrapper, } from '..';
+import { ButtonColored, CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, MediumText, PrimaryCheckBox, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, Spacer, TextInputColored, Vrline, Wrapper, } from '..';
 import { AppIcons, AppImages } from '../../assets';
 import { colors } from '../../constants';
 import PrimaryDropDown from '../dropDown';
@@ -10,7 +10,22 @@ import { HolidaysData, NotesData } from '../../utilities/dummyaData';
 import { Icon } from 'react-native-elements';
 import { AttachFiles, ImagesComponent, NotesComponent } from '../commonComponent';
 import { NotesList } from '../listComponents';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
+
+export const DateTimeModal = ({ isVisible, onConfirm, onCancel, date, mode }) => {
+    return (
+
+        <DateTimePickerModal
+            isVisible={isVisible}
+            date={date}
+            mode={mode}
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+
+        />
+    )
+}
 
 export const PrimaryModal = ({ isVisible, toggleModal, swipeDisabled,
     onPressCancelDelivery, onPressKeepDelivery, onPressClose, onPressSubmit, onPressCancel, }) => {
@@ -46,7 +61,6 @@ export const PrimaryModal = ({ isVisible, toggleModal, swipeDisabled,
 };
 export const LogoutModal = ({ isVisible, toggleModal, swipeDisabled,
     onPressLogout, onPressCancel }) => {
-
     return (
         <Modal
             animationType="slide"
@@ -71,9 +85,39 @@ export const LogoutModal = ({ isVisible, toggleModal, swipeDisabled,
         </Modal>
     );
 };
+export const AssignProjectModal = ({ isVisible, toggleModal, swipeDisabled,
+    onPressCancel }) => {
+
+    return (
+        <Modal
+            animationType="slide"
+            isVisible={isVisible}
+            swipeDirection={swipeDisabled ? null : 'down'}
+            onSwipeComplete={toggleModal}
+            style={styles.modal}
+            onBackdropPress={toggleModal}
+            backdropOpacity={0.5}>
+            <CardWrapper style={styles.card}>
+                <ComponentWrapper>
+                    <Custom size={totalSize(5)} styles={styles.iconBg} icon={AppIcons.newList} />
+                    <Spacer isSmall />
+                    <LargeTitle style={styles.logout}>{'Create New List'}</LargeTitle>
+                </ComponentWrapper>
+                <Spacer isDoubleBase />
+                <ComponentWrapper>
+                    <TextInputColored placeholder={'Enter title'} />
+                </ComponentWrapper>
+                <Spacer isDoubleBase />
+                <RowWrapper style={styles.buttonWrapper}>
+                    <ButtonColored onPress={onPressCancel} textColor={colors.appTextColor2} text="Cancel" style={styles.importBtn} />
+                    <ButtonColored text="Next" style={{ width: width(38) }} />
+                </RowWrapper>
+            </CardWrapper>
+        </Modal>
+    );
+};
 
 export const LeadModal = ({ isVisible, toggleModal, swipeDisabled, isShown, onPressThreeDot, onpressMoveSetion }) => {
-
     return (
         <Modal
             animationType="slide"
@@ -153,7 +197,6 @@ export const LeadModal = ({ isVisible, toggleModal, swipeDisabled, isShown, onPr
                         </CardWrapper>
                     ) : null}
                 </RowWrapper>
-                {/* <Hrline Width={width(80)} style={{ opacity: .3 }} /> */}
                 <Spacer />
                 <AttachFiles bgColor={colors.appBgColor1} bgWidth={width(80)} />
                 <Spacer isSmall />
@@ -185,6 +228,121 @@ export const LeadModal = ({ isVisible, toggleModal, swipeDisabled, isShown, onPr
                         }}
                     />
                 </ComponentWrapper>
+            </CardWrapper>
+        </Modal>
+    );
+};
+export const CreateProjectModal = ({ isVisible, toggleModal, swipeDisabled, isShown, onPressThreeDot, onpressMoveSetion }) => {
+    return (
+        <Modal
+            animationType="slide"
+            isVisible={isVisible}
+            swipeDirection={swipeDisabled ? null : 'down'}
+            onSwipeComplete={toggleModal}
+            style={styles.modal}
+            onBackdropPress={toggleModal}
+            hasBackdrop={true}
+            backdropOpacity={0.5}>
+            <CardWrapper style={{ ...styles.card, flex: 1, }}>
+                <RowWrapper>
+                    <Wrapper>
+                        <RowWrapperBasic>
+                            <LargeTitle style={styles.projectName}>Project name</LargeTitle>
+                            <RegularText style={styles.pendingDot}>{'\u2B24'}</RegularText>
+                            <LargeText style={styles.pending}>{'pending'}</LargeText>
+                        </RowWrapperBasic>
+                        <Spacer isTiny />
+                        <RowWrapperBasic>
+                            <LargeText style={styles.createOn}>Created on :</LargeText>
+                            <LargeText style={styles.createdDate}>Oct 22, 2023</LargeText>
+                        </RowWrapperBasic>
+                        <Spacer height={height(2.4)} />
+                        <RowWrapperBasic>
+                            <LargeText style={styles.createdBy}>Created By :</LargeText>
+                            <LargeText style={styles.you}>You</LargeText>
+                        </RowWrapperBasic>
+                        <Spacer isSmall />
+                    </Wrapper>
+                    <Wrapper style={styles.threeDotsWrapper}>
+                        <Pressable>
+                            <Icon color={colors.appIconColor3} size={totalSize(2.4)}
+                                name="dots-three-horizontal" type="entypo" onPress={onPressThreeDot} />
+                        </Pressable>
+                    </Wrapper>
+                    {isShown ? (
+                        <CardWrapper style={styles.dropDownCard}>
+
+                            <TouchableOpacity >
+                                <RowWrapper style={{ justifyContent: 'center', }}>
+                                    <Icon
+                                        name="delete"
+                                        type="materialicon"
+                                        size={totalSize(2)}
+                                        color={colors.appIconColor6}
+                                    />
+                                    <LargeText style={styles.dropDownText}>Delete</LargeText>
+                                </RowWrapper>
+                            </TouchableOpacity>
+                            <Hrline Width={width(25)} />
+                            <Spacer isTiny />
+                            <TouchableOpacity >
+                                <RowWrapper style={{ justifyContent: 'center', }}>
+                                    <Icon
+                                        name="share"
+                                        type="entypo"
+                                        size={totalSize(2)}
+                                        color={colors.appTextColor10}
+                                    />
+                                    <LargeText style={styles.dropDownText}>Send</LargeText>
+                                </RowWrapper>
+                            </TouchableOpacity>
+                            <Spacer isTiny />
+                            <Hrline Width={width(25)} />
+                            <TouchableOpacity onPress={onpressMoveSetion}>
+                                <RowWrapper style={{ justifyContent: 'center', }}>
+                                    <Icon
+                                        name="send"
+                                        type="ionicon"
+                                        size={totalSize(2)}
+                                        color={colors.appTextColor8}
+                                    />
+                                    <LargeText style={styles.dropDownText}>Move</LargeText>
+                                </RowWrapper>
+                            </TouchableOpacity>
+                        </CardWrapper>
+                    ) : null}
+                </RowWrapper>
+                <Spacer isSmall />
+                <Hrline Width={width(80)} />
+                <Spacer isSmall />
+                <CardWrapper style={{ ...styles.note, flex: 1 }}>
+                    <RowWrapperBasic>
+                        <Custom size={totalSize(3)} styles={{ paddingRight: width(2) }} icon={AppIcons.hand} />
+                        <LargeTitle style={styles.projectName}>Note*</LargeTitle>
+                    </RowWrapperBasic>
+                    <MediumText style={styles.dummyText}>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
+                    </MediumText>
+                </CardWrapper>
+                <Spacer />
+                <Wrapper style={{ flex: .1 }}>
+                    <ComponentWrapper>
+                        <TextInputColored
+                            placeholder={'Write Comment'}
+                            iconName={'attachment'}
+                            iconType={'entypo'}
+                            iconColor={colors.appTextColor2}
+                            additionalIconName={'file-photo-o'}
+                            additionalIconType={'font-awesome'}
+                            additionalIconColor={colors.appIconColor2}
+                            additionalIconStyle={{
+                                borderLeftWidth: 1,
+                                borderColor: colors.appBorderColor5,
+                                paddingLeft: width(5),
+                            }}
+                        />
+                    </ComponentWrapper>
+                </Wrapper>
             </CardWrapper>
         </Modal>
     );
@@ -323,6 +481,12 @@ const styles = StyleSheet.create({
         color: colors.appTextColor4,
         borderRadius: totalSize(1.6)
     },
+    createdBy: {
+        fontSize: totalSize(1.6),
+        color: colors.appTextColor3,
+        borderRadius: totalSize(1.6),
+        marginTop: height(.2)
+    },
     profileName: {
         fontSize: totalSize(1.6),
         color: colors.appTextColor10,
@@ -333,11 +497,17 @@ const styles = StyleSheet.create({
         color: colors.appTextColor4,
 
     },
-    date: {
-        fontSize: totalSize(1.2),
-        color: colors.appTextColor3,
-        paddingRight: width(3),
-        paddingLeft: width(1)
+
+    you: {
+        fontSize: totalSize(1.4),
+        color: colors.appTextColor2,
+        backgroundColor: colors.appBgColor1,
+        borderRadius: totalSize(10),
+        padding: 5,
+        alignSelf: 'center',
+        textAlign: 'center',
+        marginLeft: width(2),
+
     },
     completed: {
         fontSize: totalSize(1.2),
@@ -378,6 +548,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: width(4),
         paddingVertical: height(1.5),
     },
+    note: {
+        width: width(80),
+        marginHorizontal: width(5),
+        paddingVertical: height(2),
+        paddingHorizontal: width(4),
+    },
 
     heading: {
         fontSize: totalSize(2.3),
@@ -399,6 +575,33 @@ const styles = StyleSheet.create({
     moveText: {
         fontSize: totalSize(1.6),
         color: colors.appTextColor4
-    }
+    },
 
+    createdAt: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor4,
+
+    },
+    date: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor3,
+        paddingRight: width(3),
+        paddingLeft: width(1)
+    },
+    pending: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor4,
+        marginTop: height(.5)
+    },
+    pendingDot: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor12,
+        paddingLeft: width(3),
+        paddingRight: width(2),
+        marginTop: height(.55)
+    },
+    dummyText: {
+        fontSize: totalSize(1.3),
+        color: colors.appTextColor3
+    }
 })

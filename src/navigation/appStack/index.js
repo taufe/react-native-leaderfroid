@@ -15,8 +15,10 @@ function MyTabs() {
             route: SCREEN.home,
             component: App.Home,
             iconName: 'home',
-            iconType: 'foundation',
+            iconType: 'octicon',
             label: 'Home',
+            name: 'home',
+            type: 'foundation',
         },
         {
             route: SCREEN.chat,
@@ -24,6 +26,8 @@ function MyTabs() {
             iconName: 'chatbox-outline',
             iconType: 'ionicon',
             label: 'Chat',
+            name: 'chatbox',
+            type: 'ionicon',
 
         },
         {
@@ -32,6 +36,8 @@ function MyTabs() {
             iconName: 'database',
             iconType: 'feather',
             label: 'Data',
+            name: 'database',
+            type: 'font-awesome',
 
         },
         {
@@ -40,6 +46,8 @@ function MyTabs() {
             iconName: 'calendar-outline',
             iconType: 'ionicon',
             label: 'Calendar',
+            name: 'calendar',
+            type: 'ionicon',
 
         },
         {
@@ -48,7 +56,8 @@ function MyTabs() {
             iconName: 'user-o',
             iconType: 'font-awesome',
             label: 'Account',
-
+            name: 'user',
+            type: 'font-awesome',
         },
 
     ]
@@ -71,8 +80,8 @@ function MyTabs() {
                             tabBarIcon: ({ color, focused }) => (
                                 <Fragment>
                                     <Icon
-                                        name={item.iconName}
-                                        type={item.iconType}
+                                        name={focused ? item.name : item.iconName}
+                                        type={focused ? item.type : item.iconType}
                                         color={color}
                                         size={iconSize}
                                     />

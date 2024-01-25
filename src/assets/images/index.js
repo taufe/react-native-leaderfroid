@@ -21,6 +21,7 @@ export const AppImages = {
     image2: require('./image2.png'),
     image3: require('./image3.png'),
     plusCircle: require('./plusCircle.png'),
+    noTask: require('./noTask.png'),
 
 
 }

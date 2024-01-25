@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     dot: {
         fontSize: totalSize(1.2),
-        color: colors.appTextColor6,
+        color: colors.appTextColor12,
         paddingLeft: width(3),
         paddingRight: width(2)
     },

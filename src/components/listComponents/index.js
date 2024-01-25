@@ -5,7 +5,7 @@ import { height, width, totalSize } from 'react-native-dimension';
 import { StyleSheet } from 'react-native';
 import { FlatList } from "react-native";
 import { GroupCard, ManagementComponent } from "../../screens/App/home/component";
-import { ChatData, DataIntegrationData, DeliveryManagementData, GroupChatData, GroupData, InformationTabs, ManagementData, NotesData, NotificationsData, PersonalManagementData, ProfileInformationData, ProjectManagementData, ProjectManagementTabs, SalesManagementData, SalesManagementTabs, SettingsData } from "../../utilities/dummyaData";
+import { ChatData, ChooseSelectionData, DataIntegrationData, DeliveryManagementData, GroupChatData, GroupData, InformationTabs, ManagementData, NotesData, NotificationsData, PersonalChatData, PersonalManagementData, ProfileInformationData, ProjectManagementData, ProjectManagementTabs, SalesManagementData, SalesManagementTabs, SettingsData } from "../../utilities/dummyaData";
 import { colors } from "../../constants";
 import { DashedborderImage, NotesComponent, TabCard, TabCardInformation } from "../commonComponent";
 import { Spacer } from "..";
@@ -22,6 +22,8 @@ import { Icon } from "react-native-elements";
 import { ReportComponent } from "../../screens/App/report/component";
 import { Notificaiton } from "../../screens/App/notifitcation/component";
 import { ChatComponent } from "../../screens/App/deliverySheet/component";
+import { PersonalChat } from "../../screens/Technician/technicianChat/component";
+import { ChooseSelectionComponent } from "../../screens/Auth/chooseSelection/component";
 
 
 export const OnBoardingWrapper = ({ uri, skip, onPressSkip, title, description, bgColor, imageHeight, bottom }) => {
@@ -69,6 +71,25 @@ export const GroupChatList = ({ onPressChatCard }) => {
                         borderColor={item?.borderColor}
                         onPressChatCard={() => onPressChatCard(item)}
 
+                    />
+                )
+            }}
+        />
+    )
+}
+export const PersonalChatList = ({ onPressChatCard }) => {
+    return (
+        <FlatList
+            data={PersonalChatData}
+            ItemSeparatorComponent={<Spacer isSmall />}
+            renderItem={({ item, index }) => {
+                return (
+                    <PersonalChat groups={item?.groups}
+                        profile={item?.profile}
+                        participationCount={item?.participationCount}
+                        usageTime={item?.usageTime}
+                        borderColor={item?.borderColor}
+                        onPressChatCard={() => onPressChatCard(item)}
                     />
                 )
             }}
@@ -140,6 +161,10 @@ export const ProjectManagementList = ({ onPress }) => {
             data={ProjectManagementData}
             keyExtractor={(item, index) => index}
             ItemSeparatorComponent={<Spacer width={width(3)} />}
+            ListEmptyComponent={<Wrapper style={styles.noDataWrapper}>
+                <PrimaryImage size={totalSize(30)} source={AppImages.noTask} />
+                <LargeText style={styles.noDataText}>{'No task assign yet!'}</LargeText>
+            </Wrapper>}
             renderItem={({ item, index }) => {
                 return (
                     <ProjectManagementComponent
@@ -372,6 +397,23 @@ export const PhotoList = ({ onpressChatCard, profilePhotos, openGallery }) => {
     )
 }
 
+export const ChooseSelectionList = ({ onPress, activeCard }) => {
+    return (
+        <FlatList
+            data={ChooseSelectionData}
+            ItemSeparatorComponent={<Spacer height={height(2.5)} />}
+            renderItem={({ item, index }) => {
+                return (
+                    <ChooseSelectionComponent
+                        title={item?.title}
+                        onPress={() => onPress(index)}
+                        isActive={index == activeCard}
+                    />
+                )
+            }}
+        />
+    )
+}
 
 export const styles = StyleSheet.create({
     skipText: {

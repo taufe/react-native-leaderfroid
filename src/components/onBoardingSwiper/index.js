@@ -42,7 +42,7 @@ const OnBoardingSwiper = () => {
             setBackgroundColor(colors[currentSlideIndex + 1])
 
         } else {
-            navigation.replace(SCREEN.signIn);
+            navigation.replace(SCREEN.chooseSelection);
         }
     };
 

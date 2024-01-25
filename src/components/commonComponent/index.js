@@ -1,7 +1,7 @@
 import { CardWrapper, ComponentWrapper, RowWrapper, RowWrapperBasic, Wrapper } from "../wrappers"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { totalSize, width, height } from 'react-native-dimension';
-import { colors } from "../../constants"
+import { colors, fontFamily } from "../../constants"
 import { Custom, LargeText, LargeTitle, MediumText, PrimaryImage, ReadMoreModal, Spacer, TinyTitle } from ".."
 import { AppIcons, AppImages } from "../../assets";
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
@@ -9,6 +9,8 @@ import React, { useRef, useState } from "react";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { Pressable } from "react-native";
+import moment from "moment";
+import { dummyLocations } from "../../utilities/dummyaData";
 
 export const HeaderComponent = ({ heading, fonSize }) => {
   return (
@@ -122,29 +124,14 @@ export const NotesComponent = ({ heading, pointList, bgColor }) => {
 export const MapComponent = ({
   markerCoordinates,
   onPressMarker,
-  goBack,
   title,
-  lineCoordinates,
+
 }) => {
   const navigation = useNavigation()
   const mapRef = useRef();
   return (
     <Wrapper style={styles.mapContainer}>
       <Wrapper style={styles.mapView}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            position: 'absolute',
-            left: width(2),
-          }}>
-          <Icon
-            color={colors.appIconColor2}
-            style={styles.icon}
-            name='arrowleft'
-            type='antdesign'
-            size={22}
-          />
-        </TouchableOpacity>
         <TinyTitle style={styles.mapTitle}>{title}</TinyTitle>
       </Wrapper>
       <MapView
@@ -160,23 +147,18 @@ export const MapComponent = ({
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
-        {markerCoordinates && (
+
+        {dummyLocations.map((location, index) => (
           <Marker
+            key={index}
             coordinate={{
-              latitude: markerCoordinates.lat,
-              longitude: markerCoordinates.lng,
+              latitude: location.latitude,
+              longitude: location.longitude,
             }}
-            onPress={() => onPressMarker(markerCoordinates)}
-          />
-        )}
-        {lineCoordinates?.length > 0 && (
-          <Polyline
-            coordinates={lineCoordinates}
-            strokeColor={colors.appBorderColor2}
-            strokeWidth={3}
-            lineDashPattern={[1]}
-          />
-        )}
+            onPress={() => onPressMarker(markerCoordinates)}>
+            <PrimaryImage size={totalSize(4)} source={location.image} />
+          </Marker>
+        ))}
       </MapView>
     </Wrapper>
   );
@@ -187,6 +169,59 @@ export const DashedborderImage = ({ borderRadius, size, resizeMode, source, onPr
     <Pressable style={styles.imgstyle} onPress={onPress} >
       <PrimaryImage styles={{ marginRight: 8, }} borderRadius={borderRadius ?? totalSize(2)} resizeMode={resizeMode ?? "cover"} size={size ?? totalSize(10)} source={source ?? { uri: AppImages.plusCircle }} />
     </Pressable>
+  )
+}
+
+export const WeekDays = ({ setSelectedDay }) => {
+  const [selectedDate, setSelectedDate] = useState(Date.parse(new Date()));
+  const [next7Days, setNext7Days] = useState(getNext7Days(new Date(selectedDate)));
+  const [activeDay, setActiveDay] = useState(1)
+
+  return (
+    <RowWrapper>
+      {next7Days?.map((day, idx) => {
+        return (
+          <DateCard
+            key={idx}
+            date={moment(day).format('DD')}
+            day={moment(day).format('ddd')}
+            onPress={() => {
+              setSelectedDay(moment(day).format('ddd'))
+              setActiveDay(idx + 1)
+            }}
+            active={activeDay == idx + 1}
+          />
+        )
+      })}
+    </RowWrapper>
+  )
+}
+
+export const getNext7Days = (date) => {
+  const next7Days = [];
+  for (let i = 0; i <= 6; i++) {
+    const nextDay = new Date(date);
+    nextDay.setDate(date?.getDate() + i);
+    next7Days.push(nextDay);
+  }
+  return next7Days;
+};
+
+const DateCard = ({ onPress, active, day, date }) => {
+  return (
+    <TouchableOpacity activeOpacity={1}
+      onPress={onPress} style={[styles.dateCard, active && styles.activeDateCard]}>
+      <MediumText
+        style={[styles.dateText, active && styles.activeDate]}>
+        {date}
+      </MediumText>
+      <Spacer height={totalSize(.5)} />
+      <MediumText
+        style={[styles.dayText, active && styles.activeDay]}>
+        {day}
+      </MediumText>
+
+    </TouchableOpacity >
   )
 }
 
@@ -245,7 +280,7 @@ const styles = StyleSheet.create({
   mapContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: height(100),
+    height: height(50),
     position: 'relative',
   },
 
@@ -274,5 +309,31 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: totalSize(1.5),
 
-  }
+  },
+  activeDateCard: {
+    backgroundColor: colors.appBgColor1,
+    paddingHorizontal: width(3.5),
+    paddingVertical: height(.7),
+    borderRadius: totalSize(1.6)
+  },
+  activeDay: {
+    color: colors.appTextColor2
+  },
+  dayText: {
+    color: colors.appTextColor3
+  },
+  dayText: {
+    color: colors.appTextColor3,
+    fontSize: totalSize(1.3)
+  },
+  activeDate: {
+    color: colors.appTextColor2,
+    fontSize: totalSize(2),
+    fontFamily: fontFamily.appTextSemiBold
+  },
+  dateText: {
+    color: colors.appTextColor4,
+    fontSize: totalSize(2),
+    fontFamily: fontFamily.appTextSemiBold
+  },
 })

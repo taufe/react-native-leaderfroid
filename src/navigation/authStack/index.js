@@ -11,6 +11,8 @@ const AuthNavigation = () => {
             initialRouteName={SCREEN.onBoarding}>
             <Screen name={SCREEN.onBoarding} component={Auth.OnBoarding} />
             <Screen name={SCREEN.signIn} component={Auth.SignIn} />
+            <Screen name={SCREEN.signUp} component={Auth.SignUp} />
+            <Screen name={SCREEN.chooseSelection} component={Auth.ChooseSelection} />
         </Navigator>
     );
 };

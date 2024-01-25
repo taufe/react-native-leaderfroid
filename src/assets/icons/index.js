@@ -22,4 +22,6 @@ export const AppIcons = {
     googleDrive: require('./googleDrive.png'),
     calendarAdd: require('./calendarAdd.png'),
     tick: require('./tick.png'),
+    newList: require('./newList.png'),
+    hand: require('./hand.png'),
 }

@@ -1,15 +1,15 @@
 import { ComponentWrapper, Hrline, LargeText, LargeTitle, MainHeader, MainWrapper, MediumText, PrimaryImage, ScrollView, Spacer, Wrapper } from "../../../components"
-import { ReportComponent, TimeLine, WeekDays } from "./component"
+import { ReportComponent, TimeLine } from "./component"
 import useReport from "./hook"
 import { styles } from "./styles"
 import { totalSize } from 'react-native-dimension';
 import moment from "moment";
+import { WeekDays } from "../../../components/commonComponent";
 
 const Report = ({ navigation, route }) => {
     const { item } = route?.params
     const { setSelectedDay } = useReport()
     const currentDate = moment().format('MMM DD, YYYY');
-
     return (
         <MainWrapper>
             <ScrollView>

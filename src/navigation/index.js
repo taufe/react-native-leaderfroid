@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import AppNavigation from './appStack'
 import { Splash } from '../screens/Auth'
+import TechnicianNavigation from './technicianStack'
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ const Navigation = () => {
                     >
                         <Screen name={SCREEN.authStack} component={AuthNavigation} />
                         <Screen name={SCREEN.appStack} component={AppNavigation} />
+                        <Screen name={SCREEN.technicianStack} component={TechnicianNavigation} />
                     </Navigator>
                 </NavigationContainer>
             }

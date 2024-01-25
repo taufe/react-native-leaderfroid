@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { SCREEN } from "../../../../constants";
 
 const useProfileInformation = (navigation) => {
     const [activeTab, setActiveTab] = useState(0)
@@ -12,7 +11,7 @@ const useProfileInformation = (navigation) => {
         setActiveTab(index)
     }
     const onPressSubmit = () => {
-        navigation.navigate(SCREEN.profile)
+        navigation.goBack()
     }
     const onPressCancel = () => {
         navigation.goBack()

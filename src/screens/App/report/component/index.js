@@ -1,66 +1,12 @@
 import { useState } from "react";
 import { CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, MediumText, RegularText, RowWrapper, RowWrapperBasic, Spacer, Vrline, Vrlines, Wrapper } from "../../../../components";
-import moment from "moment";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import { totalSize, height, width } from 'react-native-dimension';
-import { colors, fontFamily } from "../../../../constants";
+import { colors } from "../../../../constants";
 import { Icon } from "react-native-elements";
 import { AppIcons } from "../../../../assets";
 import Timeline from 'react-native-timeline-flatlist'
 import { AttachFiles } from "../../../../components/commonComponent";
-export const WeekDays = ({ setSelectedDay }) => {
-    const [selectedDate, setSelectedDate] = useState(Date.parse(new Date()));
-    const [next7Days, setNext7Days] = useState(getNext7Days(new Date(selectedDate)));
-    const [activeDay, setActiveDay] = useState(1)
-
-    return (
-        <RowWrapper>
-            {next7Days?.map((day, idx) => {
-                return (
-                    <DateCard
-                        key={idx}
-                        date={moment(day).format('DD')}
-                        day={moment(day).format('ddd')}
-
-                        onPress={() => {
-                            setSelectedDay(moment(day).format('ddd'))
-                            setActiveDay(idx + 1)
-                        }}
-                        active={activeDay == idx + 1}
-                    />
-                )
-            })}
-        </RowWrapper>
-    )
-}
-
-export const getNext7Days = (date) => {
-    const next7Days = [];
-    for (let i = 0; i <= 6; i++) {
-        const nextDay = new Date(date);
-        nextDay.setDate(date?.getDate() + i);
-        next7Days.push(nextDay);
-    }
-    return next7Days;
-};
-
-const DateCard = ({ onPress, active, day, date }) => {
-    return (
-        <TouchableOpacity activeOpacity={1}
-            onPress={onPress} style={[styles.dateCard, active && styles.activeDateCard]}>
-            <MediumText
-                style={[styles.dateText, active && styles.activeDate]}>
-                {date}
-            </MediumText>
-            <Spacer height={totalSize(.5)} />
-            <MediumText
-                style={[styles.dayText, active && styles.activeDay]}>
-                {day}
-            </MediumText>
-
-        </TouchableOpacity >
-    )
-}
 
 export const ReportComponent = () => {
     return (
@@ -182,32 +128,7 @@ export const TimeLine = () => {
 };
 
 const styles = StyleSheet.create({
-    activeDateCard: {
-        backgroundColor: colors.appBgColor1,
-        paddingHorizontal: width(3.5),
-        paddingVertical: height(.7),
-        borderRadius: totalSize(1.6)
-    },
-    activeDay: {
-        color: colors.appTextColor2
-    },
-    dayText: {
-        color: colors.appTextColor3
-    },
-    dayText: {
-        color: colors.appTextColor3,
-        fontSize: totalSize(1.3)
-    },
-    activeDate: {
-        color: colors.appTextColor2,
-        fontSize: totalSize(2),
-        fontFamily: fontFamily.appTextSemiBold
-    },
-    dateText: {
-        color: colors.appTextColor4,
-        fontSize: totalSize(2),
-        fontFamily: fontFamily.appTextSemiBold
-    },
+
     card: {
         backgroundColor: colors.appBgColor1,
         paddingVertical: totalSize(2)

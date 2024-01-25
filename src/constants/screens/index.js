@@ -5,12 +5,13 @@ export const SCREEN = {
     authStack: 'authStack',
     appStack: 'appStack',
     tabs: 'tabs',
+    technicianStack: 'technicianStack',
     // AuthNavigation
     splash: 'splash',
     signIn: 'signIn',
     onBoarding: 'onBoarding',
-
-
+    signUp: 'signUp',
+    chooseSelection: 'chooseSelection',
 
     // AppNavigation
     home: 'home',
@@ -30,6 +31,14 @@ export const SCREEN = {
     assigningDetails: 'assigningDetails',
     deliverySheet: 'deliverySheet',
     map: 'map',
+
+    // Technician Navigator
+
+    dashboard: 'dashboard',
+    technicianChat: 'technicianChat',
+    technicianReport: 'technicianReport',
+    setting: 'setting',
+    myInformation: 'myInformation',
 
 }
 

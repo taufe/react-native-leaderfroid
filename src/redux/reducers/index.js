@@ -1,7 +1,7 @@
 import { USER } from "../types"
 
 const intialState = {
-    user_type: ''
+    getUserRedux: ''
 }
 const reducer = (state = intialState, action) => {
     switch (action.type) {
@@ -9,7 +9,7 @@ const reducer = (state = intialState, action) => {
         case USER: {
             return {
                 ...state,
-                user_type: action.payload,
+                getUserRedux: action.payload,
             }
         }
         default:
