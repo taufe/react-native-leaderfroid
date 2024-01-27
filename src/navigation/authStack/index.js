@@ -8,7 +8,7 @@ const AuthNavigation = () => {
     return (
         <Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName={SCREEN.onBoarding}>
+            initialRouteName={SCREEN.signIn}>
             <Screen name={SCREEN.onBoarding} component={Auth.OnBoarding} />
             <Screen name={SCREEN.signIn} component={Auth.SignIn} />
             <Screen name={SCREEN.signUp} component={Auth.SignUp} />

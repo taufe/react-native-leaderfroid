@@ -17,5 +17,25 @@ export const styles = StyleSheet.create({
     hourlyReport: {
         marginHorizontal: width(5),
         color: colors.appTextColor4
-    }
+    },
+    inputField: {
+        // flex: 1,
+        backgroundColor: colors.appBgColor1,
+        width: width(40),
+        color: '#000',
+        fontSize: 16,
+        height: 40,
+        borderRadius: totalSize(1.2)
+
+    },
+    icon1: {
+        position: 'absolute',
+        left: width(32),
+        top: height(4)
+    },
+    icon2: {
+        position: 'absolute',
+        left: width(74),
+        top: height(4)
+    },
 })

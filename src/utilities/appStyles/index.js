@@ -102,7 +102,7 @@ export const appStyles = StyleSheet.create({
         borderRadius: 2.5
     },
     inputField: {
-        height: height(6),
+        // height: height(6.5),
         // width: width(80),
         color: colors.appTextColor3,
         fontFamily: fontFamily.appTextRegular,

@@ -1,27 +1,22 @@
 
-import { ButtonColored, ComponentWrapper, DateTimeModal, Hrline, LargeText, LargeTitle, MainHeader, MainWrapper, MediumText, ScrollView, Spacer, TextInputColored, Wrapper } from '../../../components'
+import { ButtonColored, ComponentWrapper, DateTimeModal, Hrline, LargeText, LargeTitle, MainHeader, MainWrapper, MediumText, RegularText, RowWrapper, ScrollView, Spacer, TextInputColored, Wrapper } from '../../../components'
 import useTechnicianReport from './hook'
 import moment from 'moment'
 import { styles } from './styles'
 import { HeaderComponent, WeekDays } from '../../../components/commonComponent'
 import { AssignProjectComponent, Note } from './component'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Button } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 import { colors } from '../../../constants'
 import { width, height } from 'react-native-dimension';
+import { TextInput, TouchableOpacity } from 'react-native'
+import { totalSize } from 'react-native-dimension';
 
 const TechnicianReport = () => {
-    const { setSelectedDay,
-        showFromTimePicker,
-        hideFromTimePicker,
-        showToTimePicker,
-        hideToTimePicker,
-        handleConfirm,
-        toTime,
-        fromTime,
-        isFromTimePickerVisible,
-        isToTimePickerVisible,
-        showTime, } = useTechnicianReport()
+    const { isFromTimePickerVisible, isToTimePickerVisible, selectedToTime, showTimePicker,
+        hideTimePicker, handleConfirm, formatTimeInCustomFormat, addField,
+        deleteField, selectedFromTime, additionalFields, setSelectedDay } = useTechnicianReport()
+
     const currentDate = moment().format('MMM DD, YYYY');
     return (
         <MainWrapper>
@@ -41,6 +36,89 @@ const TechnicianReport = () => {
                 <Spacer isSmall />
                 <ComponentWrapper>
                     <HeaderComponent heading={'Hourly Report'} />
+                </ComponentWrapper>
+                <Wrapper>
+                    <RowWrapper>
+                        <Wrapper>
+                            <LargeTitle style={{ fontSize: totalSize(1.4) }}>From</LargeTitle>
+                            <Spacer isTiny />
+                            <TouchableOpacity onPress={() => showTimePicker('from')}>
+                                <TextInput
+                                    placeholderTextColor={'#000'}
+                                    editable={false}
+                                    placeholder={selectedFromTime ? formatTimeInCustomFormat(selectedFromTime) : '10:00 AM'}
+                                    style={styles.inputField}
+                                />
+                            </TouchableOpacity>
+                        </Wrapper>
+                        <Wrapper>
+                            <LargeTitle style={{ fontSize: totalSize(1.4) }}>From</LargeTitle>
+                            <Spacer isTiny />
+                            <TouchableOpacity onPress={() => showTimePicker('to')}>
+                                <TextInput
+                                    placeholderTextColor={'#000'}
+                                    editable={false}
+                                    placeholder={selectedToTime ? formatTimeInCustomFormat(selectedToTime) : '12:00 AM'}
+                                    style={styles.inputField}
+                                />
+                            </TouchableOpacity>
+                        </Wrapper>
+                        <Wrapper style={styles.icon1}>
+                            <Icon name='chevron-small-down' type='entypo' size={totalSize(3)} />
+                        </Wrapper>
+                        <Wrapper style={styles.icon2}>
+                            <Icon name='chevron-small-down' type='entypo' size={totalSize(3)} />
+                        </Wrapper>
+                        <TouchableOpacity onPress={addField} style={{ alignSelf: 'flex-end', marginBottom: height(1) }}>
+                            <Icon name='plus' type='feather' size={totalSize(2.7)} color={colors.appIconColor2} style={{ borderRadius: totalSize(10), borderColor: colors.appBorderColor2, borderWidth: 1.7, padding: 1 }} />
+                        </TouchableOpacity>
+                    </RowWrapper>
+                    <Spacer isSmall />
+                    {/* Render additional fields */}
+                    {additionalFields?.map((field) => (
+                        <Wrapper>
+                            <RowWrapper key={field.id}>
+                                <TouchableOpacity onPress={() => showTimePicker('from')}>
+                                    <TextInput
+                                        placeholderTextColor={'#000'}
+                                        editable={false}
+                                        placeholder={selectedFromTime ? formatTimeInCustomFormat(selectedFromTime) : '10:00 AM'}
+                                        style={styles.inputField}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => showTimePicker('to')}>
+                                    <TextInput
+                                        placeholderTextColor={'#000'}
+                                        editable={false}
+                                        placeholder={selectedToTime ? formatTimeInCustomFormat(selectedToTime) : '12:00 AM'}
+                                        style={styles.inputField}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => deleteField(field.id)}>
+                                    <Icon name='trash' type='feather' color={colors.appIconColor6} />
+                                </TouchableOpacity>
+                            </RowWrapper>
+                            <Spacer isSmall />
+                        </Wrapper>
+
+                    ))}
+
+                    <DateTimePickerModal
+                        isVisible={isFromTimePickerVisible}
+                        mode='time'
+                        onConfirm={(time) => handleConfirm(time, 'from')}
+                        onCancel={() => hideTimePicker('from')}
+                    />
+
+                    <DateTimePickerModal
+                        isVisible={isToTimePickerVisible}
+                        mode='time'
+                        onConfirm={(time) => handleConfirm(time, 'to')}
+                        onCancel={() => hideTimePicker('to')}
+                    />
+                </Wrapper>
+                <Spacer isSmall />
+                <ComponentWrapper>
                     <TextInputColored
                         placeholder={'Write Comment'}
                         iconName={'attachment'}
@@ -59,21 +137,6 @@ const TechnicianReport = () => {
                     <ButtonColored text='Submit' style={{ height: height(6) }} />
                     <Note />
                 </ComponentWrapper>
-                {/* <Button title="Select From Time" onPress={showFromTimePicker} />
-                <DateTimePickerModal
-                    isVisible={isFromTimePickerVisible}
-                    mode="time"
-                    onConfirm={(time) => handleConfirm(time, "from")}
-                    onCancel={hideFromTimePicker}
-                />
-
-                <Button title="Select To Time" onPress={showToTimePicker} />
-                <DateTimePickerModal
-                    isVisible={isToTimePickerVisible}
-                    mode="time"
-                    onConfirm={(time) => handleConfirm(time, "to")}
-                    onCancel={hideToTimePicker}
-                /> */}
 
             </ScrollView>
         </MainWrapper>
@@ -81,3 +144,4 @@ const TechnicianReport = () => {
 }
 
 export default TechnicianReport
+
