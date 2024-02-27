@@ -15,9 +15,10 @@ import Notification from "./notifitcation";
 import AssigningDetails from "./assigningDetails";
 import DeliverySheet from "./deliverySheet";
 import Map from "./map";
+import Schedule from "./schedule";
 export {
     Home, Profile, Calender, Chat, Data, SalesManagement,
     PersonalManagement, CreateNewLead, Conversation,
     ProjectManagement, DeliveryManagement, ProfileInformation,
-    Report, Notification, AssigningDetails, DeliverySheet, Map
+    Report, Notification, AssigningDetails, DeliverySheet, Map, Schedule
 }

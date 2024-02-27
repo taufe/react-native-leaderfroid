@@ -1,12 +1,12 @@
 import { PrimaryImage } from "../images"
 import { LargeText, LargeTitle, MediumText } from "../text";
-import { RowWrapperBasic, Wrapper } from "../wrappers"
+import { CardWrapper, RowWrapperBasic, Wrapper } from "../wrappers"
 import { height, width, totalSize } from 'react-native-dimension';
-import { StyleSheet } from 'react-native';
+import { ScrollView, SectionList, StyleSheet, View } from 'react-native';
 import { FlatList } from "react-native";
 import { GroupCard, ManagementComponent } from "../../screens/App/home/component";
-import { ChatData, ChooseSelectionData, DataIntegrationData, DeliveryManagementData, GroupChatData, GroupData, InformationTabs, ManagementData, NotesData, NotificationsData, PersonalChatData, PersonalManagementData, ProfileInformationData, ProjectManagementData, ProjectManagementTabs, SalesManagementData, SalesManagementTabs, SettingsData } from "../../utilities/dummyaData";
-import { colors } from "../../constants";
+import { ChatData, ChooseSelectionData, DataIntegrationData, DeliveryManagementData, GroupChatData, GroupData, InformationTabs, ManagementData, NotesData, NotificationsData, PersonalChatData, PersonalManagementData, ProfileInformationData, ProjectManagementData, ProjectManagementTabs, SalesManagementData, SalesManagementTabs, ScheduleData, SettingsData } from "../../utilities/dummyaData";
+import { colors, fontFamily } from "../../constants";
 import { DashedborderImage, NotesComponent, TabCard, TabCardInformation } from "../commonComponent";
 import { Spacer } from "..";
 import { ProjectManagementComponent } from "../../screens/App/projectManagement/component";
@@ -24,6 +24,7 @@ import { Notificaiton } from "../../screens/App/notifitcation/component";
 import { ChatComponent } from "../../screens/App/deliverySheet/component";
 import { PersonalChat } from "../../screens/Technician/technicianChat/component";
 import { ChooseSelectionComponent } from "../../screens/Auth/chooseSelection/component";
+import { ScheduleComponent } from "../../screens/App/schedule/component";
 
 
 export const OnBoardingWrapper = ({ uri, skip, onPressSkip, title, description, bgColor, imageHeight, bottom }) => {
@@ -415,6 +416,32 @@ export const ChooseSelectionList = ({ onPress, activeCard }) => {
     )
 }
 
+
+export const ScheduleList = ({ onPress }) => {
+    return (
+        <Wrapper style={{ flexDirection: 'row' }}>
+            <SectionList
+                sections={ScheduleData}
+                keyExtractor={(item, index) => item}
+                contentContainerStyle={{ paddingVertical: height(2) }}
+                renderItem={({ item }) => (
+                    <ScheduleComponent
+                        profileName={item?.profileName}
+                        profileImages={item?.profileImages}
+                        onPress={onPress}
+                    />
+                )}
+                renderSectionHeader={({ section: { title } }) => (
+                    <LargeText style={styles.header}>{title}</LargeText>
+                )}
+            />
+
+        </Wrapper>
+    );
+};
+
+
+
 export const styles = StyleSheet.create({
     skipText: {
         position: 'absolute',
@@ -452,6 +479,16 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: totalSize(1.9),
         color: colors.appTextColor4
+    },
+    header: {
+        marginBottom: -30,
+        fontFamily: fontFamily.appTextSemiBold,
+        fontSize: totalSize(1.1),
+        backgroundColor: colors.appTextColor13,
+        padding: 5,
+        width: width(9),
+        borderTopRightRadius: totalSize(1.5),
+        borderBottomRightRadius: totalSize(1.5)
     },
 
 

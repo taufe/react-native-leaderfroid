@@ -8,7 +8,10 @@ const useHome = (navigation) => {
     const onPressNotification = () => {
         navigation.navigate(SCREEN.notifitcation)
     }
-    return { onPressManagement, onPressNotification }
+    const onPressChat = () => {
+        navigation.navigate(SCREEN.chat)
+    }
+    return { onPressManagement, onPressNotification, onPressChat }
 }
 
 export default useHome

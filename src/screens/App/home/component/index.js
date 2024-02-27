@@ -4,11 +4,14 @@ import { colors } from "../../../../constants"
 import { AppIcons } from "../../../../assets"
 import { totalSize, width, height } from 'react-native-dimension';
 
-export const HomeNotification = ({ onPressNotification }) => {
+export const HomeNotification = ({ onPressNotification, onPressChat }) => {
     return (
         <RowWrapper>
             <LargeTitle style={styles.hey}>Hey!</LargeTitle>
-            <Custom onPress={onPressNotification} styles={styles.notification} size={totalSize(2.5)} icon={AppIcons.notificationBing} />
+            <RowWrapperBasic>
+                <Custom onPress={onPressNotification} styles={styles.notification} size={totalSize(2.5)} icon={AppIcons.notificationBing} />
+                <Custom onPress={onPressChat} styles={styles.notification} size={totalSize(2.5)} icon={AppIcons.chat} />
+            </RowWrapperBasic>
         </RowWrapper>
     )
 }
@@ -81,7 +84,8 @@ const styles = StyleSheet.create({
     notification: {
         backgroundColor: colors.appTextColor1,
         borderRadius: totalSize(5),
-        padding: totalSize(.7)
+        padding: totalSize(.7),
+        marginLeft: width(3)
     },
     groupName: {
         fontSize: totalSize(1.2),

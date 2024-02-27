@@ -21,12 +21,12 @@ function MyTabs() {
             type: 'foundation',
         },
         {
-            route: SCREEN.chat,
-            component: App.Chat,
-            iconName: 'chatbox-outline',
+            route: SCREEN.schedule,
+            component: App.Schedule,
+            iconName: 'calendar-number-outline',
             iconType: 'ionicon',
-            label: 'Chat',
-            name: 'chatbox',
+            label: 'Schedule',
+            name: 'calendar-number',
             type: 'ionicon',
 
         },
@@ -117,8 +117,7 @@ const AppNavigation = () => {
             <Screen name={SCREEN.assigningDetails} component={App.AssigningDetails} />
             <Screen name={SCREEN.deliverySheet} component={App.DeliverySheet} />
             <Screen name={SCREEN.map} component={App.Map} />
-
-
+            <Screen name={SCREEN.chat} component={App.Chat} />
         </Navigator>
     );
 };

@@ -72,7 +72,7 @@ const OnBoardingSwiper = () => {
                             bgColor={item?.color}
                             imageHeight={item?.imageHeight}
                             bottom={item?.bottom}
-                            onPressSkip={() => navigation?.replace(SCREEN.signIn)}
+                            onPressSkip={() => navigation?.replace(SCREEN.chooseSelection)}
                         />
                     );
                 }}

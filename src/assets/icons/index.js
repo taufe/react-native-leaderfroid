@@ -24,4 +24,5 @@ export const AppIcons = {
     tick: require('./tick.png'),
     newList: require('./newList.png'),
     hand: require('./hand.png'),
+    chat: require('./chat.png'),
 }

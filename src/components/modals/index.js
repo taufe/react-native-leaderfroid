@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { height, totalSize, width } from 'react-native-dimension';
 import Modal from 'react-native-modal';
-import { ButtonColored, CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, MediumText, PrimaryCheckBox, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, Spacer, TextInputColored, Vrline, Wrapper, } from '..';
+import { ButtonColored, CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, MediumText, PrimaryCheckBox, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, ScrollView, Spacer, TextInputColored, Vrline, Wrapper, } from '..';
 import { AppIcons, AppImages } from '../../assets';
 import { colors } from '../../constants';
 import PrimaryDropDown from '../dropDown';
 import { HolidaysData, NotesData } from '../../utilities/dummyaData';
 import { Icon } from 'react-native-elements';
 import { AttachFiles, ImagesComponent, NotesComponent } from '../commonComponent';
-import { NotesList } from '../listComponents';
+import { ChatList, NotesList } from '../listComponents';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import moment from 'moment';
+import { CompleteDetails, HourlyReport } from '../../screens/App/deliverySheet/component';
 
 
 export const DateTimeModal = ({ isVisible, onConfirm, onCancel, date, mode }) => {
@@ -421,6 +423,129 @@ export const ReadMoreModal = ({ isVisible, toggleModal, pointList, bgColor, head
         </Modal>
     );
 };
+export const AssignToModal = ({ isVisible, toggleModal, onPressAssignProject }) => {
+    const assignedTo = [
+        { image: AppImages.profile1 },
+        { image: AppImages.profile2 },
+    ]
+
+    return (
+        <Modal
+            animationType="slide"
+            isVisible={isVisible}
+            style={styles.modal}
+            onBackdropPress={toggleModal}
+            backdropOpacity={0.5}
+        >
+            <TouchableOpacity onPress={onPressAssignProject}>
+                <ComponentWrapper>
+                    <CardWrapper style={{ ...styles.card, width: width(82) }}>
+                        <RowWrapper>
+                            <Wrapper>
+                                <RowWrapperBasic>
+                                    <LargeTitle style={styles.projectName}>Project name</LargeTitle>
+                                </RowWrapperBasic>
+                                <Spacer isTiny />
+                                <LargeText style={styles.no}>No. 22345</LargeText>
+                                <Spacer isSmall />
+                                <RowWrapperBasic>
+                                    <LargeTitle style={styles.assignedTo}>Assigned to : </LargeTitle>
+                                    {assignedTo?.map((item, index) => (
+                                        <PrimaryImage styles={{ marginLeft: 2 }} size={totalSize(2.9)}
+                                            borderRadius={totalSize(5)} key={index}
+                                            source={item.image} />
+                                    ))
+                                    }
+                                </RowWrapperBasic>
+                                <Spacer height={height(1.5)} />
+                                <Hrline Width={width(60)} style={{ opacity: .3 }} />
+                                <Spacer isTiny />
+                            </Wrapper>
+                            <Wrapper style={styles.threeDotsWrapper}>
+                                <Icon color={colors.appIconColor3} size={totalSize(2.4)}
+                                    name="dots-three-horizontal" type="entypo" />
+                            </Wrapper>
+                        </RowWrapper>
+                        <RowWrapper>
+                            <Wrapper>
+                                <RowWrapperBasic>
+                                    <LargeText style={styles.onDate}>On date :</LargeText>
+                                    <LargeText style={styles.date}>{moment().format("MMM D, YYYY")}</LargeText>
+                                    <Vrline style={{ opacity: .3 }} />
+                                    <RegularText style={{ ...styles.dot, color: colors.appBgColor12 }}>{'\u2B24'}</RegularText>
+                                    <LargeText style={styles.completed}>pending</LargeText>
+                                </RowWrapperBasic>
+                            </Wrapper>
+                            <Wrapper>
+                                <Custom size={totalSize(2.2)} icon={AppIcons.messageText} />
+                            </Wrapper>
+                        </RowWrapper>
+                    </CardWrapper>
+                </ComponentWrapper>
+            </TouchableOpacity>
+        </Modal>
+    );
+};
+export const ProjectViewModal = ({ isVisible, toggleModal }) => {
+    return (
+        <Modal
+            animationType="slide"
+            isVisible={isVisible}
+            style={styles.modal}
+            onBackdropPress={toggleModal}
+            backdropOpacity={0.5}
+        >
+            <ScrollView>
+                <CardWrapper style={styles.card}>
+                    <CompleteDetails />
+                    <Spacer isTiny />
+                    <Hrline Width={width(80)} />
+                    <Spacer />
+                    <AttachFiles bgColor={colors.appBgColor13} bgWidth={width(80)} />
+                    <Spacer />
+                    <ImagesComponent />
+                    <Spacer isSmall />
+                    <Hrline Width={width(80)} />
+                    <Spacer isSmall />
+                    <ComponentWrapper style={styles.notes}>
+                        <LargeText style={styles.attachFile}>Notes</LargeText>
+                        <Spacer isTiny />
+                        <NotesList data={NotesData} />
+                        <Spacer />
+                        <Hrline Width={width(80)} />
+                        <Spacer isSmall />
+                    </ComponentWrapper>
+                    <ChatList />
+                    <HourlyReport />
+                    <Spacer isSmall />
+                    <Hrline Width={width(80)} />
+                    <Spacer />
+                    <Wrapper >
+                        <ComponentWrapper >
+                            <TextInputColored
+                                placeholder={'Write Comment'}
+                                iconName={'attachment'}
+                                iconType={'entypo'}
+                                iconColor={colors.appTextColor2}
+                                additionalIconName={'file-photo-o'}
+                                additionalIconType={'font-awesome'}
+                                additionalIconColor={colors.appIconColor2}
+                                additionalIconStyle={{
+                                    borderLeftWidth: 1,
+                                    borderColor: colors.appBorderColor5,
+                                    paddingLeft: width(5),
+                                }}
+                            />
+                        </ComponentWrapper>
+                    </Wrapper>
+                    <Spacer isDoubleBase />
+                </CardWrapper>
+            </ScrollView>
+        </Modal>
+    );
+};
+
+
 
 const styles = StyleSheet.create({
     card: {
@@ -603,5 +728,66 @@ const styles = StyleSheet.create({
     dummyText: {
         fontSize: totalSize(1.3),
         color: colors.appTextColor3
+    },
+    //Assign project css
+    card: {
+        backgroundColor: colors.appBgColor1,
+        paddingVertical: totalSize(2)
+    },
+    projectName: {
+        fontSize: totalSize(1.9)
+    },
+    no: {
+        fontSize: totalSize(1.6),
+        color: colors.appTextColor3,
+        backgroundColor: colors.appButton7,
+        paddingHorizontal: width(2),
+        alignSelf: 'flex-start',
+        borderRadius: totalSize(1.6)
+    },
+    assignedTo: {
+        fontSize: totalSize(1.6),
+        color: colors.appTextColor3,
+    },
+    onDate: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor4,
+
+    },
+    date: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor3,
+        paddingRight: width(3),
+        paddingLeft: width(1)
+    },
+    completed: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor4,
+    },
+    dot: {
+        fontSize: totalSize(1.2),
+        color: colors.appTextColor8,
+        paddingLeft: width(3),
+        paddingRight: width(2)
+    },
+    threeDotsWrapper: {
+        alignSelf: 'flex-start',
+
+    },
+    tick: {
+        marginTop: 6.5,
+        marginLeft: width(2.3)
+    },
+    attachFile: {
+        fontSize: totalSize(1.6),
+    },
+    notes: {
+        marginLeft: width(5),
+        marginHorizontal: width(0)
+    },
+    dateInputStyle: {
+        backgroundColor: colors.appBgColor13,
+        borderRadius: totalSize(1.2),
+        paddingBottom: 5
     }
 })

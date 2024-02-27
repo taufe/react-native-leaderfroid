@@ -2,7 +2,7 @@ import { CardWrapper, ComponentWrapper, RowWrapper, RowWrapperBasic, Wrapper } f
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { totalSize, width, height } from 'react-native-dimension';
 import { colors, fontFamily } from "../../constants"
-import { Custom, LargeText, LargeTitle, MediumText, PrimaryImage, ReadMoreModal, Spacer, TinyTitle } from ".."
+import { Custom, LargeText, LargeTitle, MediumText, PrimaryImage, ReadMoreModal, RegularText, Spacer, TinyTitle } from ".."
 import { AppIcons, AppImages } from "../../assets";
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import React, { useRef, useState } from "react";
@@ -38,6 +38,31 @@ export const TabCardInformation = ({ item, onPress, isActive, bulletColor }) => 
         <LargeText style={{ ...styles.tabText, color: isActive ? colors.appTextColor1 : colors.appTextColor4 }}>{item}</LargeText>
       </TouchableOpacity>
     </Wrapper >
+  )
+}
+
+export const ProjectStatus = () => {
+  return (
+    <RowWrapper style={{ marginHorizontal: width(8) }}>
+      <RowWrapperBasic>
+        <RegularText style={styles.doingDot}>
+          {'\u2B24'}
+        </RegularText>
+        <MediumText style={styles.statusText}>On Doing</MediumText>
+      </RowWrapperBasic>
+      <RowWrapperBasic>
+        <RegularText style={styles.completeDot}>
+          {'\u2B24'}
+        </RegularText>
+        <MediumText style={styles.statusText}>Completed</MediumText>
+      </RowWrapperBasic>
+      <RowWrapperBasic>
+        <RegularText style={styles.progressDot}>
+          {'\u2B24'}
+        </RegularText>
+        <MediumText style={styles.statusText}>In Progress</MediumText>
+      </RowWrapperBasic>
+    </RowWrapper>
   )
 }
 
@@ -336,4 +361,21 @@ const styles = StyleSheet.create({
     fontSize: totalSize(2),
     fontFamily: fontFamily.appTextSemiBold
   },
+
+  completeDot: {
+    fontSize: totalSize(1.5),
+    color: colors.appBgColor8
+  },
+  doingDot: {
+    fontSize: totalSize(1.5),
+    color: colors.appBgColor12
+  },
+  progressDot: {
+    fontSize: totalSize(1.5),
+    color: colors.appBgColor10
+  },
+  statusText: {
+    fontSize: totalSize(1.5),
+    paddingLeft: width(2)
+  }
 })

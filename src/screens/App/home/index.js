@@ -6,11 +6,11 @@ import { height } from 'react-native-dimension';
 import useHome from './hook';
 
 const Home = ({ navigation }) => {
-    const { onPressManagement, onPressNotification } = useHome(navigation)
+    const { onPressManagement, onPressNotification, onPressChat } = useHome(navigation)
     return (
         <MainWrapper>
             <Spacer isDoubleBase />
-            <HomeNotification onPressNotification={onPressNotification} />
+            <HomeNotification onPressNotification={onPressNotification} onPressChat={onPressChat} />
             <MainHeader title={'Let’s begin to manage \nyour projects'} />
             <Hrline />
             <Spacer isTiny />

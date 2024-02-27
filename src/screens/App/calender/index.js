@@ -1,7 +1,8 @@
 
 import { Hrline, MainHeader, MainWrapper, ScrollView, Spacer } from '../../../components'
+import { ProjectStatus } from '../../../components/commonComponent'
 import { ProjectManagementList } from '../../../components/listComponents'
-import { CalenderComponent, ProjectStatus } from './component'
+import { CalenderComponent } from './component'
 
 const Calender = () => {
     return (

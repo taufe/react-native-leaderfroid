@@ -26,12 +26,12 @@ export const ButtonBorderd = ({ text = '', onPress, bgColor, background, icon, t
     )
 }
 
-export const ButtonColored = ({ text = '', onPress, disabled, background, textColor, animation, duration, withIcon, style, isLoading, textStyle }) => {
+export const ButtonColored = ({ text = '', height, onPress, disabled, background, textColor, animation, duration, withIcon, style, isLoading, textStyle }) => {
     return (
         <Wrapper animation={animation} duration={duration} >
             <TouchableOpacity activeOpacity={.8}
                 disabled={disabled}
-                style={[styles.buttonColored, { backgroundColor: background ? background : disabled ? colors.appButton2 : colors.appButton2, }, style]}
+                style={[styles.buttonColored, { backgroundColor: background ? background : disabled ? colors.appButton2 : colors.appButton2, height: height ? height : 55 }, style]}
                 onPress={onPress}>
                 {withIcon ? <RowWrapperBasic >
                     <Spacer isSmall horizontal />
@@ -41,7 +41,7 @@ export const ButtonColored = ({ text = '', onPress, disabled, background, textCo
                     isLoading ? <ActivityIndicator color={colors.appTextColor3} />
                         : <Text style={[styles.coloredButtonText, { color: textColor ?? colors.appTextColor1 }, textStyle]}>{text}</Text>}
             </TouchableOpacity>
-        </Wrapper>
+        </Wrapper >
     )
 }
 

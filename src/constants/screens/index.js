@@ -31,7 +31,7 @@ export const SCREEN = {
     assigningDetails: 'assigningDetails',
     deliverySheet: 'deliverySheet',
     map: 'map',
-
+    schedule: 'schedule',
     // Technician Navigator
 
     dashboard: 'dashboard',
