@@ -28,8 +28,6 @@ export const PrimaryCheckBox = ({ textStyle, containerStyle, text, }) => {
     );
 }
 
-
-
 const styles = StyleSheet.create({
     checkboxText: {
         color: colors.appTextColor2,

@@ -35,9 +35,13 @@ const useDashboard = (navigation) => {
         navigation.navigate(SCREEN.notifitcation)
     }
 
+    const onPressManagement = (item) => {
+        navigation.navigate(item?.screen, { item: 'item' })
+    }
+
     return {
         activeTab, onPressTab, onPress, toggle, modalVisible,
-        onPressCancel, toggleModal, showModal, onPressThreeDot, isShown, onPressNotification
+        onPressCancel, toggleModal, showModal, onPressThreeDot, onPressManagement, isShown, onPressNotification
     }
 }
 

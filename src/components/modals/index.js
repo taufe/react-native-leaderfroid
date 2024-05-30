@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import { height, totalSize, width } from 'react-native-dimension';
 import Modal from 'react-native-modal';
 import { ButtonColored, CardWrapper, ComponentWrapper, Custom, Hrline, LargeText, LargeTitle, MediumText, PrimaryCheckBox, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, ScrollView, Spacer, TextInputColored, Vrline, Wrapper, } from '..';
@@ -13,6 +13,8 @@ import { ChatList, NotesList } from '../listComponents';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
 import { CompleteDetails, HourlyReport } from '../../screens/App/deliverySheet/component';
+import Signature from "react-native-signature-canvas";
+import { Badge } from '@rneui/themed'
 
 
 export const DateTimeModal = ({ isVisible, onConfirm, onCancel, date, mode }) => {
@@ -24,6 +26,7 @@ export const DateTimeModal = ({ isVisible, onConfirm, onCancel, date, mode }) =>
             mode={mode}
             onConfirm={onConfirm}
             onCancel={onCancel}
+
 
         />
     )
@@ -545,6 +548,109 @@ export const ProjectViewModal = ({ isVisible, toggleModal }) => {
     );
 };
 
+export const SignatureModal = ({ isVisible, toggleModal }) => {
+    const [signature, setSign] = useState(null);
+    const [textInput, setTextInput] = useState('');
+    const [showText, setShowText] = useState('')
+
+    const handleDisplayText = () => {
+        setShowText(textInput)
+        setTextInput('')
+    }
+
+
+    const handleOK = (signature) => {
+        console.log(signature);
+        setSign(signature);
+    };
+    const handleEmpty = () => {
+    };
+
+    const style = `.m-signature-pad--footer
+    .button {
+      background-color: #1C3C88;
+      color: #fff;
+    }`;
+
+    return (
+        <Modal
+            animationType="slide"
+            isVisible={isVisible}
+            style={styles.modal}
+            onBackdropPress={toggleModal}
+            backdropOpacity={0.5}>
+            <CardWrapper style={styles.preview}>
+                <RowWrapper style={{ marginHorizontal: width(2), justifyContent: 'flex-start' }}>
+                    <LargeText style={styles.signatureHeading}>Signatures</LargeText>
+                    <Custom size={totalSize(2.5)} icon={AppIcons.tick} />
+                </RowWrapper>
+                <RowWrapperBasic style={{ marginHorizontal: width(2) }}>
+                    <LargeText style={{ color: colors.appTextColor3 }}>Client’s Name </LargeText>
+                    <LargeText style={{ color: colors.appTextColor4 }}>{showText}</LargeText>
+                </RowWrapperBasic>
+                <RowWrapper style={{ justifyContent: 'flex-start', marginHorizontal: width(2) }}>
+                    <LargeText style={styles.signatureCardHeading1}>Client's signature</LargeText>
+                    <LargeText style={styles.signatureCardHeading2}>Manager’s signature</LargeText>
+                </RowWrapper>
+                <Spacer isSmall />
+                <Wrapper style={{ flexDirection: 'row', }}>
+                    <View>
+                        {signature ? (
+                            <Image
+                                resizeMode={"contain"}
+                                style={{ width: 35, height: 14 }}
+                                source={{ uri: signature }}
+                            />
+                        ) : null}
+                    </View>
+                    <Signature
+                        onOK={handleOK}
+                        onEmpty={handleEmpty}
+                        descriptionText="Sign"
+                        confirmText="Save"
+                        webStyle={style}
+                        penColor={colors.appTextColor4}
+                        style={styles.signatureClient}
+                        overlayHeight={1}
+
+                    />
+                    <View>
+                        {signature ? (
+                            <Image
+                                resizeMode={"contain"}
+                                style={{ width: 35, height: 14 }}
+                                source={{ uri: signature }}
+                            />
+                        ) : null}
+                    </View>
+                    <Signature
+                        onOK={handleOK}
+                        onEmpty={handleEmpty}
+                        descriptionText="Sign"
+                        confirmText="Save"
+                        webStyle={style}
+                        penColor={colors.appTextColor2}
+                        style={styles.signatureManager}
+                        overlayHeight={1}
+                    />
+                </Wrapper>
+                <Spacer isSmall />
+                <TextInput
+                    style={styles.inPutFieldText}
+                    onChangeText={(val) => setTextInput(val)}
+                    value={textInput}
+                    placeholder="Please Enter client Name"
+                    onSubmitEditing={handleDisplayText}
+                />
+                <Spacer />
+                <RowWrapper>
+                    <ButtonColored onPress={() => handleOK()} text='Save' style={styles.saveButton} />
+                    <ButtonColored onPress={() => handleOK()} text='Save' style={styles.saveButton} />
+                </RowWrapper>
+            </CardWrapper>
+        </Modal >
+    );
+};
 
 
 const styles = StyleSheet.create({
@@ -789,5 +895,53 @@ const styles = StyleSheet.create({
         backgroundColor: colors.appBgColor13,
         borderRadius: totalSize(1.2),
         paddingBottom: 5
-    }
+    },
+    saveButton: {
+        width: width(35),
+        // alignSelf: 'center',
+        // position: 'absolute',
+        // marginTop: -70
+    },
+    preview: {
+        borderRadius: totalSize(1.2),
+        height: height(50),
+        paddingVertical: height(2),
+        paddingHorizontal: width(2),
+        backgroundColor: colors.appBgColor5
+    },
+    signatureClient: {
+        height: height(15),
+        width: width(40),
+        marginHorizontal: width(2),
+        borderRadius: totalSize(1.6)
+    },
+    signatureManager: {
+        height: height(15),
+        width: width(40),
+        marginHorizontal: width(2),
+        borderRadius: totalSize(1.6),
+    },
+
+    signatureHeading: {
+        fontSize: totalSize(1.9),
+        color: colors.appTextColor4,
+        paddingRight: width(1)
+    },
+    signatureCardHeading1: {
+        fontSize: totalSize(1.5),
+        color: colors.appTextColor4
+    },
+    signatureCardHeading2: {
+        fontSize: totalSize(1.5),
+        color: colors.appTextColor4,
+        paddingLeft: width(15)
+    },
+    inPutFieldText: {
+        borderBottomColor: colors.appBorderColor5,
+        // borderWidth: 1,
+        color: colors.appTextColor4,
+        backgroundColor: colors.appBorderColor1,
+        borderRadius: totalSize(1.2),
+        marginHorizontal: width(2)
+    },
 })

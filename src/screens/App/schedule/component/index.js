@@ -3,7 +3,6 @@ import { ButtonColored, CardWrapper, LargeText, LargeTitle, MediumText, PrimaryI
 import { width, height, totalSize } from 'react-native-dimension';
 import { StyleSheet } from "react-native";
 import { colors, fontFamily } from "../../../../constants";
-import { ScrollView } from "react-native";
 import { FlatList } from "react-native";
 import { TouchableOpacity } from "react-native";
 
@@ -18,7 +17,7 @@ export const ScheduleHeading = () => {
 }
 
 
-export const ScheduleComponent = ({ profileName, profileImages, onPress }) => {
+export const ScheduleComponent = ({ profileName, assignedTo, onPress }) => {
     const cardData = [
         { usageTime: '09:00 AM - 06:00 PM' },
         { usageTime: '09:00 AM - 06:00 PM' },
@@ -27,8 +26,13 @@ export const ScheduleComponent = ({ profileName, profileImages, onPress }) => {
     const colors = ['#367FFA', '#FFC33C', '#1F8235', '#F3F3F3',];
 
     return (
-        <Wrapper style={{ flexDirection: 'row', marginLeft: width(12) }}>
-            <PrimaryImage size={totalSize(4.5)} source={profileImages} />
+        <Wrapper style={{ flexDirection: 'row', marginLeft: width(4) }}>
+            {assignedTo?.map((item, index) => (
+                <PrimaryImage styles={{ marginLeft: -10 }} size={totalSize(2.9)}
+                    borderRadius={totalSize(5)} key={index}
+                    source={item} />
+            ))
+            }
             <LargeTitle style={styles.profileName}>{profileName}</LargeTitle>
             <Spacer />
             <Wrapper>

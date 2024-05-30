@@ -1,9 +1,13 @@
 import { SCREEN } from "../../../../constants"
 
 
-const useDeliveryManagement = (navigation) => {
+const useDeliveryManagement = (navigation, route) => {
+
+    // Params
+    const item = route?.params?.item
+
     const onPressDeliverySheet = () => {
-        navigation.navigate(SCREEN.deliverySheet)
+        navigation.navigate(SCREEN.deliverySheet, { item: item })
     }
     return { onPressDeliverySheet }
 }

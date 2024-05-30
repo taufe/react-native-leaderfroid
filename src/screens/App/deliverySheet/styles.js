@@ -18,5 +18,6 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.appBgColor13,
         borderRadius: totalSize(1.2),
         paddingBottom: 5
-    }
+    },
+
 })

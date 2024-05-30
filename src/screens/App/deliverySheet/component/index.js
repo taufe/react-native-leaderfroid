@@ -1,10 +1,12 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { CardWrapper, Custom, LargeText, LargeTitle, PrimaryImage, RegularText, RowWrapper, RowWrapperBasic, Spacer, Vrline, Wrapper } from "../../../../components"
 import { Icon } from "react-native-elements"
 import { totalSize, height, width } from 'react-native-dimension';
 import { colors } from "../../../../constants";
 import { AppIcons } from "../../../../assets";
 import { TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import Signature from "react-native-signature-canvas";
 
 export const CompleteDetails = () => {
     return (
@@ -54,6 +56,59 @@ export const HourlyReport = () => {
                 <Icon name="chevron-right" type="feather" size={totalSize(2.4)} />
             </RowWrapper>
         </Wrapper>
+    )
+}
+
+
+
+
+export const AddSignatureButton = ({ onPressSignature }) => {
+    return (
+        <TouchableOpacity style={styles.signatureButton} onPress={onPressSignature}>
+            <Icon name="plus" type="feather" size={totalSize(2.5)} color={colors.appIconColor2} style={{ paddingRight: 10 }} />
+            <LargeText>Add Name/Signature</LargeText>
+        </TouchableOpacity>
+    )
+}
+
+export const SignatureComponent = () => {
+    const [signature, setSign] = useState(null);
+    const handleOK = (signature) => {
+        setSign(signature);
+    };
+    const handleEmpty = () => {
+    };
+
+    const style = `.m-signature-pad--footer
+    .button {
+      background-color: #fff;
+      color: #fff;
+    }`;
+
+    return (
+        <CardWrapper style={styles.preview}>
+            <LargeText style={{ backgroundColor: '#fff' }}>Signature</LargeText>
+            <Spacer isSmall />
+            <View>
+                {signature ? (
+                    <Image
+                        resizeMode={"contain"}
+                        // style={{ width: 35, height: 14 }}
+                        source={{ uri: signature }}
+                    />
+                ) : null}
+            </View>
+            <Signature
+                onOK={handleOK}
+                onEmpty={handleEmpty}
+                descriptionText="Sign"
+                confirmText="Save"
+                webStyle={style}
+                penColor={colors.appTextColor4}
+                overlayHeight={10}
+
+            />
+        </CardWrapper>
     )
 }
 
@@ -126,4 +181,23 @@ const styles = StyleSheet.create({
         fontSize: totalSize(1.2),
 
     },
+    preview: {
+        borderRadius: totalSize(1.2),
+        height: height(15),
+        backgroundColor: colors.appBgColor1,
+        marginHorizontal: width(5),
+        width: width(80)
+    },
+    signatureButton: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: colors.appTextColor2,
+        borderWidth: 1,
+        marginHorizontal: width(5),
+        borderStyle: 'dashed',
+        paddingVertical: height(1.7),
+        borderRadius: totalSize(1.6)
+    },
+
 })

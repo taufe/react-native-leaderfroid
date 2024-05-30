@@ -2,14 +2,15 @@ import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import { AssignToModal, CreateProjectModal, Hrline, MainHeader, MainWrapper, ProjectViewModal, Spacer, Wrapper } from '../../../components'
 import { ScheduleHeading } from './component'
-import { ProjectStatus } from '../../../components/commonComponent'
+import { ProjectStatus, WeekDays } from '../../../components/commonComponent'
 import { ScheduleList } from '../../../components/listComponents'
 import { colors } from '../../../constants'
 import { height } from 'react-native-dimension';
 import useSchedule from './hook'
 
 const Schedule = () => {
-    const { toggleModal, modalVisible, onPressAssignProject, projectModalVisible } = useSchedule()
+    const { toggleModal, modalVisible, onPressAssignProject,
+        projectModalVisible, setSelectedDay } = useSchedule()
     return (
         <MainWrapper>
             <MainHeader title={'Employee \nSchedule'} />
@@ -18,7 +19,8 @@ const Schedule = () => {
             <ScheduleHeading />
             <Spacer />
             <ProjectStatus />
-            <Spacer />
+            <Spacer height={height(1.5)} />
+            <WeekDays setSelectedDay={setSelectedDay} />
             <ScrollView>
                 <Wrapper style={{ backgroundColor: colors.appBgColor1, paddingVertical: height(2) }}>
                     <ScheduleList onPress={toggleModal} />

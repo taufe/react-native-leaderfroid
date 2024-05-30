@@ -42,8 +42,8 @@ export const SalesManagementComponent = ({ projectName, price, profileImage, dat
                         </Wrapper>
                     </RowWrapper>
                 </CardWrapper>
-                <Spacer />
-                <Hrline Width={width(90)} style={{ opacity: .3 }} />
+                {/* <Spacer /> */}
+                {/* <Hrline Width={width(90)} style={{ opacity: .3 }} /> */}
             </ComponentWrapper>
         </TouchableOpacity>
     )

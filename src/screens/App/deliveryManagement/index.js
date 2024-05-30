@@ -4,8 +4,9 @@ import { totalSize } from 'react-native-dimension';
 import { colors } from '../../../constants';
 import useDeliveryManagement from './hook';
 
-const DeliveryManagement = ({ navigation }) => {
-    const { onPressDeliverySheet } = useDeliveryManagement(navigation)
+const DeliveryManagement = ({ navigation, route }) => {
+
+    const { onPressDeliverySheet } = useDeliveryManagement(navigation, route)
     return (
         <MainWrapper>
             <MainHeader title={'Delivery \nManagement'} goBack />

@@ -1,23 +1,26 @@
 import { TouchableOpacity } from "react-native";
 import { AssignProjectModal, CreateProjectModal, Hrline, MainHeader, MainWrapper, Spacer, Wrapper } from "../../../components"
-import { ProjectManagementList, ProjectTabsList } from "../../../components/listComponents"
-import { HomeNotification } from "../../App/home/component"
+import { ManagementList, ProjectManagementList, ProjectTabsList } from "../../../components/listComponents"
+import { Heading, HomeNotification } from "../../App/home/component"
 import useDashboard from "./hook"
-import { width } from 'react-native-dimension';
+import { width, height } from 'react-native-dimension';
 import { styles } from "./styles";
 import { Icon } from "react-native-elements";
 import { colors } from "../../../constants";
 
 const Dashboard = ({ navigation }) => {
     const { onPress, onPressTab, activeTab, toggle, modalVisible,
-        onPressCancel, toggleModal, showModal, onPressThreeDot, isShown, onPressNotification } = useDashboard(navigation)
+        onPressCancel, toggleModal, showModal, onPressThreeDot, isShown, onPressNotification, onPressManagement } = useDashboard(navigation)
     return (
         <MainWrapper>
             <Spacer isDoubleBase />
             <HomeNotification onPressNotification={onPressNotification} />
             <MainHeader title={'Let’s start work \non projects'} />
             <Hrline />
-            <Spacer isSmall />
+            <Heading heading={'Do your work on'} />
+            <Spacer height={height(1.5)} />
+            <ManagementList onPress={onPressManagement} />
+            {/* <Spacer isSmall />
             <Wrapper style={{ marginLeft: width(5) }}>
                 <ProjectTabsList onPress={onPressTab} activeTab={activeTab} />
             </Wrapper>
@@ -30,7 +33,7 @@ const Dashboard = ({ navigation }) => {
             <TouchableOpacity style={styles.plusWrapper} onPress={toggle} >
                 <Icon name='plus' type='antdesign' color={colors.appTextColor2} />
             </TouchableOpacity>
-            <AssignProjectModal toggleModal={toggle} isVisible={modalVisible} onPressCancel={onPressCancel} />
+            <AssignProjectModal toggleModal={toggle} isVisible={modalVisible} onPressCancel={onPressCancel} /> */}
         </MainWrapper>
     )
 }

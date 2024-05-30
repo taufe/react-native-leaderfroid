@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import * as Technician from "../../screens/Technician";
 import { totalSize } from 'react-native-dimension';
 import { MediumText } from "../../components";
-import { AssigningDetails, Conversation, Notification, ProfileInformation } from "../../screens/App";
+import { AssigningDetails, Conversation, DeliveryManagement, DeliverySheet, Notification, PersonalManagement, ProfileInformation, ProjectManagement, Report, SalesManagement } from "../../screens/App";
 const Tab = createBottomTabNavigator();
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -98,6 +98,12 @@ const TechnicianNavigation = () => {
             <Screen name={SCREEN.conversation} component={Conversation} />
             <Screen name={SCREEN.profileInformation} component={ProfileInformation} />
             <Screen name={SCREEN.notifitcation} component={Notification} />
+            <Screen name={SCREEN.salesManagement} component={SalesManagement} />
+            <Screen name={SCREEN.projectManagement} component={ProjectManagement} />
+            <Screen name={SCREEN.deliveryManagement} component={DeliveryManagement} />
+            <Screen name={SCREEN.personalManagement} component={PersonalManagement} />
+            <Screen name={SCREEN.report} component={Report} />
+            <Screen name={SCREEN.deliverySheet} component={DeliverySheet} />
         </Navigator>
     );
 };

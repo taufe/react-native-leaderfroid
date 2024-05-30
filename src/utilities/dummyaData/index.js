@@ -474,107 +474,138 @@ export const dummyLocations = [
     },
 ];
 
-// export const ScheduleData = [
-//     {
-//         id: 1,
-//         date: '16 \nFeb',
-//         assignedTo: [
-//             { image: AppImages.profile1 },
-//             { image: AppImages.profile2 },
-//         ],
-//         profileName: 'Olam Bazeer',
-
-
-//     },
-//     {
-//         id: 2,
-//         date: '16 \nFeb',
-//         assignedTo: [
-//             { image: AppImages.profile1 },
-//             { image: AppImages.profile2 },
-//         ],
-//         profileName: 'Olam Bazeer',
-
-
-//     },
-//     {
-//         id: 3,
-//         date: '16 \nFeb',
-//         assignedTo: [
-//             { image: AppImages.profile1 },
-//             { image: AppImages.profile2 },
-//         ],
-//         profileName: 'Olam Bazeer',
-
-
-//     },
-// ]
-
 export const ScheduleData = [
     {
-        title: '16 Feb',
-        data: [
-            {
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
-            },
-            {
-
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
-
-            },
-        ]
+        id: 1,
+        assignedTo: [
+            { image: AppImages.profile1 },
+            { image: AppImages.profile2 },
+        ],
+        profileName: 'All Employees',
     },
     {
-        title: '17 Feb',
-        data: [
-            {
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
+        id: 2,
+        assignedTo: [
+            { image: AppImages.profile1 },
+            { image: AppImages.profile2 },
+            { image: AppImages.profile3 },
+        ],
+        profileName: 'New Group',
 
-            },
-            {
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
 
-            },
-
-        ]
     },
     {
-        title: '18 Feb',
-        data: [
-            {
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
-            },
-            {
+        id: 3,
+        assignedTo: [
+            { image: AppImages.profile1 },
+            { image: AppImages.profile2 },
+        ],
+        profileName: 'Olam Bazeer',
 
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
 
-            },
-        ]
     },
     {
-        title: '19 Feb',
-        data: [
-            {
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
-
-            },
-            {
-                profileName: 'Taufeeq',
-                profileImages: AppImages.profile1,
-
-            },
-
-        ]
+        id: 4,
+        assignedTo: [
+            { image: AppImages.profile1 },
+            { image: AppImages.profile2 },
+        ],
+        profileName: 'Work Group',
     },
+    {
+        id: 5,
+        assignedTo: [
+            { image: AppImages.profile1 },
+        ],
+        profileName: 'Olam Bazeer',
 
+
+    },
+    {
+        id: 6,
+        assignedTo: [
+            { image: AppImages.profile1 },
+            { image: AppImages.profile2 },
+            { image: AppImages.profile3 },
+        ],
+        profileName: 'Expert Group',
+
+
+    },
+    {
+        id: 7,
+        assignedTo: [
+            { image: AppImages.profile1 },
+        ],
+        profileName: 'Olam Bazeer',
+    },
 ]
+
+// export const ScheduleData = [
+//     {
+//         title: '16 Feb',
+//         data: [
+//             {
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+//             },
+//             {
+
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+
+//             },
+//         ]
+//     },
+//     {
+//         title: '17 Feb',
+//         data: [
+//             {
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+
+//             },
+//             {
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+
+//             },
+
+//         ]
+//     },
+//     {
+//         title: '18 Feb',
+//         data: [
+//             {
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+//             },
+//             {
+
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+
+//             },
+//         ]
+//     },
+//     {
+//         title: '19 Feb',
+//         data: [
+//             {
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+
+//             },
+//             {
+//                 profileName: 'Taufeeq',
+//                 profileImages: AppImages.profile1,
+
+//             },
+
+//         ]
+//     },
+
+// ]
 
 
 

@@ -1,17 +1,18 @@
-import { CardWrapper, ComponentWrapper, Hrline, LargeText, MainHeader, MainWrapper, PrimaryImage, ScrollView, Spacer, TextInputColored } from '../../../components'
+import { CardWrapper, ComponentWrapper, Hrline, LargeText, MainHeader, MainWrapper, PrimaryImage, RegularText, ScrollView, SignatureModal, Spacer, TextInputColored, Wrapper } from '../../../components'
 import { AttachFiles, ImagesComponent } from '../../../components/commonComponent'
 import { ChatList, NotesList } from '../../../components/listComponents'
 import { styles } from './styles'
 import { width, height } from 'react-native-dimension';
-import { CompleteDetails, HourlyReport } from './component'
+import { AddSignatureButton, CompleteDetails, HourlyReport, SignatureComponent } from './component'
 import useDeliverySheet from './hook';
 import { colors } from '../../../constants';
 import { AppImages } from '../../../assets';
 import { NotesData } from '../../../utilities/dummyaData';
 import { TouchableOpacity } from 'react-native';
 
-const DeliverySheet = ({ navigation }) => {
-    const { onpressChatCard, onPressMap } = useDeliverySheet(navigation)
+const DeliverySheet = ({ navigation, route }) => {
+    const item = route?.params?.item
+    const { onpressChatCard, onPressMap, onPressSignature, modalVisible } = useDeliverySheet(navigation)
     return (
         <MainWrapper>
             <MainHeader goBack title={'Delivery \nSheet'} />
@@ -53,6 +54,12 @@ const DeliverySheet = ({ navigation }) => {
                             <PrimaryImage styles={{ width: width(80), height: height(15) }} source={AppImages.map} />
                         </TouchableOpacity>
                     </ComponentWrapper>
+                    <Spacer isSmall />
+                    {item ? (<SignatureComponent />) :
+                        (<Wrapper>
+                            <AddSignatureButton onPressSignature={onPressSignature} />
+                            <SignatureModal toggleModal={onPressSignature} isVisible={modalVisible} />
+                        </Wrapper>)}
                     <Spacer isDoubleBase />
                 </CardWrapper>
                 <Spacer />
@@ -60,5 +67,6 @@ const DeliverySheet = ({ navigation }) => {
         </MainWrapper>
     )
 }
-
 export default DeliverySheet
+
+

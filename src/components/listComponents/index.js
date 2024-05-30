@@ -419,26 +419,24 @@ export const ChooseSelectionList = ({ onPress, activeCard }) => {
 
 export const ScheduleList = ({ onPress }) => {
     return (
-        <Wrapper style={{ flexDirection: 'row' }}>
-            <SectionList
-                sections={ScheduleData}
-                keyExtractor={(item, index) => item}
-                contentContainerStyle={{ paddingVertical: height(2) }}
-                renderItem={({ item }) => (
+        <FlatList
+            data={ScheduleData}
+            keyExtractor={(item) => item}
+            contentContainerStyle={{ paddingVertical: height(2) }}
+            renderItem={({ item, index }) => {
+                return (
                     <ScheduleComponent
                         profileName={item?.profileName}
-                        profileImages={item?.profileImages}
-                        onPress={onPress}
+                        assignedTo={item?.assignedTo?.map((item) => item?.image)}
+                        onPress={() => onPress(item)}
                     />
-                )}
-                renderSectionHeader={({ section: { title } }) => (
-                    <LargeText style={styles.header}>{title}</LargeText>
-                )}
-            />
+                )
+            }}
 
-        </Wrapper>
-    );
-};
+        />
+
+    )
+}
 
 
 

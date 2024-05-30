@@ -32,8 +32,9 @@ export const SCREEN = {
     deliverySheet: 'deliverySheet',
     map: 'map',
     schedule: 'schedule',
-    // Technician Navigator
 
+
+    // Technician Navigator
     dashboard: 'dashboard',
     technicianChat: 'technicianChat',
     technicianReport: 'technicianReport',

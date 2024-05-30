@@ -7,6 +7,7 @@ const useSchedule = (navigation) => {
     // UseState
     const [modalVisible, setModalVisible] = useState(false)
     const [projectModalVisible, setProjectModalVisible] = useState(false);
+    const [SelectedDay, setSelectedDay] = useState(Date.parse(new Date()))
 
     const onPressAssignProject = () => {
         toggleModal();
@@ -17,10 +18,10 @@ const useSchedule = (navigation) => {
         setModalVisible(!modalVisible)
         setProjectModalVisible(false)
     }
-
-
-
-    return { toggleModal, modalVisible, onPressAssignProject, projectModalVisible }
+    return {
+        toggleModal, modalVisible, onPressAssignProject,
+        projectModalVisible, setSelectedDay
+    }
 }
 
 export default useSchedule
